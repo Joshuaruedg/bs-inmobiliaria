@@ -1,0 +1,13 @@
+<section class="hero">
+  <div class="hero-copy">
+    <img src="logo-bs.png" alt="BS Inmobiliaria" class="hero-logo">
+    <p class="eyebrow">Inmobiliaria premium en Puebla</p>
+    <h1>Encuentra, vende o invierte en propiedades con acompañamiento experto.</h1>
+    <p class="subtitle">Especialistas en Puebla, Cholula y Lomas de Angelópolis. Fotografía profesional, publicidad digital y asesoría durante todo el proceso.</p>
+    <div class="actions"><a routerLink="/propiedades" class="primary">Ver propiedades</a><a href="https://wa.me/522221059393" target="_blank" class="secondary">Agenda asesoría</a></div>
+  </div>
+  <div class="hero-card"><img src="brand-reference.jpg" alt="BS Inmobiliaria"><div><b>¿Tienes una propiedad para vender?</b><span>Nosotros encontramos al comprador ideal.</span></div></div>
+</section>
+<section class="stats"><div><b>20+</b><span>años de experiencia</span></div><div><b>100+</b><span>propiedades en cartera</span></div><div><b>3</b><span>zonas principales</span></div></section>
+<section class="section"><h2>Propiedades destacadas</h2><p>Base inicial lista para empezar a cargar casas reales.</p><div class="grid"><app-property-card *ngFor="let property of featured" [property]="property" /></div></section>
+<section class="cta"><h2>Vende tu propiedad con nosotros</h2><p>Fotografía profesional, publicación en portales inmobiliarios, redes sociales y acompañamiento personalizado.</p><a routerLink="/contacto">Solicitar asesoría</a></section>

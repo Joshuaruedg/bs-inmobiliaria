@@ -1,0 +1,1 @@
+<section class="page-head"><h1>Propiedades disponibles</h1><p>Busca por zona, tipo o nombre de propiedad.</p><input placeholder="Ej. Lomas, Cholula, casa..." [ngModel]="query()" (ngModelChange)="setQuery($event)"></section><section class="grid"><app-property-card *ngFor="let property of properties()" [property]="property" /></section>
