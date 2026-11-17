@@ -1,6 +1,7 @@
 {
-  "name": "bs-inmobiliaria",
-  "version": "1.0.0",
+  "name": "bs-inmobiliaria-premium",
+  "version": "2.0.0",
+  "private": true,
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
@@ -24,6 +25,6 @@
     "@angular-devkit/build-angular": "^18.2.0",
     "@angular/cli": "^18.2.0",
     "@angular/compiler-cli": "^18.2.0",
-    "typescript": "~5.5.0"
+    "typescript": "~5.5.2"
   }
 }

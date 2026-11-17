@@ -1,1 +1,434 @@
-<section class="contact"><div><h1>Agenda una asesoría</h1><p>Cuéntanos si quieres comprar, vender o invertir. Te atendemos sin compromiso.</p><a href="https://wa.me/522221059393" target="_blank">WhatsApp 222 105 9393</a><a href="https://wa.me/522221673601" target="_blank" class="outline">Samantha González</a></div><form><input placeholder="Nombre"><input placeholder="Teléfono"><select><option>Quiero vender una propiedad</option><option>Quiero comprar</option><option>Busco invertir</option></select><textarea placeholder="Mensaje"></textarea><button type="button">Enviar demo</button></form></section>
+<!-- =====================================================
+     CONTACTO · HERO
+====================================================== -->
+
+<section class="contact-hero">
+
+  <div class="contact-hero-overlay"></div>
+
+  <div class="contact-container contact-hero-content">
+
+    <!-- NAVEGACIÓN DEL HERO -->
+
+    <div class="hero-navigation">
+
+      <a
+        routerLink="/"
+        class="back-link"
+      >
+        <span aria-hidden="true">
+          ←
+        </span>
+
+        Volver al inicio
+      </a>
+
+
+      <span class="eyebrow light hero-eyebrow">
+        CONTACTO
+      </span>
+
+    </div>
+
+
+    <h1>
+      Cuéntanos qué propiedad
+      <br>
+      estás buscando.
+    </h1>
+
+
+    <p>
+      Compra, venta, renta o inversión. Nuestro equipo te acompaña
+      con atención personalizada para ayudarte a tomar una decisión
+      inmobiliaria con mayor claridad.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTACTO + FORMULARIO
+====================================================== -->
+
+<section class="contact-main">
+
+  <div class="contact-container contact-grid">
+
+    <!-- ===================================================
+         INFORMACIÓN
+    ==================================================== -->
+
+    <aside class="contact-info">
+
+      <span class="eyebrow">
+        ASESORÍA PERSONALIZADA
+      </span>
+
+
+      <h2>
+        Hablemos de tu próximo
+        movimiento inmobiliario.
+      </h2>
+
+
+      <p class="contact-intro">
+        Cuéntanos qué necesitas. Te ayudaremos a revisar opciones
+        de acuerdo con tu presupuesto, ubicación y objetivos.
+      </p>
+
+
+      <!-- MEDIOS DE CONTACTO -->
+
+      <div class="contact-details">
+
+
+        <!-- WHATSAPP -->
+
+        <article>
+
+          <span class="detail-number">
+            01
+          </span>
+
+          <div>
+
+            <small>
+              WHATSAPP
+            </small>
+
+            <a
+              href="https://wa.me/522221673601"
+              target="_blank"
+              rel="noopener"
+            >
+              222 167 3601
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <!-- CORREO -->
+
+        <article>
+
+          <span class="detail-number">
+            02
+          </span>
+
+          <div>
+
+            <small>
+              CORREO
+            </small>
+
+            <a href="mailto:contacto@bsinmobiliaria.com">
+              contacto&#64;bsinmobiliaria.com
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <!-- UBICACIÓN -->
+
+        <article>
+
+          <span class="detail-number">
+            03
+          </span>
+
+          <div>
+
+            <small>
+              UBICACIÓN
+            </small>
+
+            <strong>
+              Puebla, México
+            </strong>
+
+          </div>
+
+        </article>
+
+
+        <!-- HORARIO -->
+
+        <article>
+
+          <span class="detail-number">
+            04
+          </span>
+
+          <div>
+
+            <small>
+              HORARIO
+            </small>
+
+            <strong>
+              Lunes a sábado · 9:00 a 19:00
+            </strong>
+
+          </div>
+
+        </article>
+
+      </div>
+
+
+      <!-- NOTA -->
+
+      <div class="contact-note">
+
+        <span>
+          ATENCIÓN BS
+        </span>
+
+        <p>
+          Cada solicitud es atendida directamente para ofrecerte
+          seguimiento y opciones relevantes.
+        </p>
+
+      </div>
+
+    </aside>
+
+
+    <!-- ===================================================
+         FORMULARIO
+    ==================================================== -->
+
+    <div class="form-panel">
+
+
+      <!-- ENCABEZADO DEL FORMULARIO -->
+
+      <div class="form-heading">
+
+        <span>
+          SOLICITAR INFORMACIÓN
+        </span>
+
+        <h2>
+          Empecemos por conocerte.
+        </h2>
+
+        <p>
+          Déjanos tus datos y te contactaremos para conocer
+          lo que estás buscando.
+        </p>
+
+      </div>
+
+
+      <!-- FORMULARIO -->
+
+      <form
+        class="contact-form"
+        (ngSubmit)="sendWhatsApp()"
+      >
+
+
+        <!-- NOMBRE + TELÉFONO -->
+
+        <div class="form-row">
+
+          <label class="field">
+
+            <span>
+              Nombre
+            </span>
+
+            <input
+              type="text"
+              name="name"
+              [(ngModel)]="name"
+              autocomplete="name"
+              placeholder="Tu nombre"
+              required
+            >
+
+          </label>
+
+
+          <label class="field">
+
+            <span>
+              Teléfono
+            </span>
+
+            <input
+              type="tel"
+              name="phone"
+              [(ngModel)]="phone"
+              autocomplete="tel"
+              placeholder="222 000 0000"
+              required
+            >
+
+          </label>
+
+        </div>
+
+
+        <!-- CORREO -->
+
+        <label class="field">
+
+          <span>
+            Correo
+          </span>
+
+          <input
+            type="email"
+            name="email"
+            [(ngModel)]="email"
+            autocomplete="email"
+            placeholder="nombre@correo.com"
+          >
+
+        </label>
+
+
+        <!-- INTERÉS -->
+
+        <label class="field">
+
+          <span>
+            ¿En qué podemos ayudarte?
+          </span>
+
+          <select
+            name="interest"
+            [(ngModel)]="interest"
+          >
+
+            <option
+              *ngFor="let option of interests"
+              [value]="option"
+            >
+              {{ option }}
+            </option>
+
+          </select>
+
+        </label>
+
+
+        <!-- MENSAJE -->
+
+        <label class="field">
+
+          <span>
+            Cuéntanos un poco más
+          </span>
+
+          <textarea
+            name="message"
+            [(ngModel)]="message"
+            rows="5"
+            placeholder="Zona, presupuesto y características que buscas"
+          ></textarea>
+
+        </label>
+
+
+        <!-- BOTÓN WHATSAPP -->
+
+        <button
+          type="submit"
+          class="whatsapp-button"
+        >
+
+          <span
+            class="whatsapp-icon"
+            aria-hidden="true"
+          >
+
+            <svg
+              viewBox="0 0 24 24"
+              focusable="false"
+            >
+              <path
+                d="M12 2a9.5 9.5 0 0 0-8.1 14.45L2.5 21.5l5.18-1.36A9.5 9.5 0 1 0 12 2Zm0 17.2a7.7 7.7 0 0 1-3.93-1.07l-.28-.17-3.07.81.82-2.99-.18-.3A7.7 7.7 0 1 1 12 19.2Zm4.22-5.77c-.23-.12-1.37-.68-1.58-.75-.21-.08-.36-.12-.51.12-.15.23-.59.75-.72.9-.13.16-.26.18-.49.06-.23-.12-.96-.35-1.83-1.12-.68-.6-1.13-1.34-1.26-1.57-.13-.23-.01-.36.1-.47.1-.1.23-.26.34-.39.12-.13.16-.23.23-.39.08-.15.04-.29-.02-.41-.06-.12-.51-1.24-.7-1.69-.18-.44-.37-.38-.51-.39h-.43c-.15 0-.39.06-.59.29-.2.23-.77.75-.77 1.83 0 1.08.79 2.13.9 2.28.12.15 1.55 2.37 3.76 3.32.53.23.94.36 1.26.46.53.17 1.01.15 1.39.09.42-.06 1.37-.56 1.56-1.1.19-.54.19-1 .13-1.1-.05-.09-.2-.15-.43-.27Z"
+              ></path>
+            </svg>
+
+          </span>
+
+
+          <span class="button-copy">
+
+            <strong>
+              Enviar por WhatsApp
+            </strong>
+
+            <small>
+              Atención directa con BS Inmobiliaria
+            </small>
+
+          </span>
+
+
+          <span
+            class="button-arrow"
+            aria-hidden="true"
+          >
+            →
+          </span>
+
+        </button>
+
+
+        <!-- AVISO -->
+
+        <p class="form-legal">
+          Al continuar, WhatsApp se abrirá con tu información
+          lista para compartir.
+        </p>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     CIERRE
+====================================================== -->
+
+<section class="contact-close">
+
+  <div class="contact-container close-grid">
+
+    <div>
+
+      <span class="eyebrow light">
+        BS INMOBILIARIA
+      </span>
+
+      <h2>
+        Tu hogar, nuestra prioridad.
+      </h2>
+
+    </div>
+
+
+    <p>
+      Acompañamiento inmobiliario en Puebla para compra,
+      venta, renta e inversión.
+    </p>
+
+  </div>
+
+</section>

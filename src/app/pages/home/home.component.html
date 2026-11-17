@@ -1,13 +1,658 @@
-<section class="hero">
-  <div class="hero-copy">
-    <img src="logo-bs.png" alt="BS Inmobiliaria" class="hero-logo">
-    <p class="eyebrow">Inmobiliaria premium en Puebla</p>
-    <h1>Encuentra, vende o invierte en propiedades con acompañamiento experto.</h1>
-    <p class="subtitle">Especialistas en Puebla, Cholula y Lomas de Angelópolis. Fotografía profesional, publicidad digital y asesoría durante todo el proceso.</p>
-    <div class="actions"><a routerLink="/propiedades" class="primary">Ver propiedades</a><a href="https://wa.me/522221059393" target="_blank" class="secondary">Agenda asesoría</a></div>
-  </div>
-  <div class="hero-card"><img src="brand-reference.jpg" alt="BS Inmobiliaria"><div><b>¿Tienes una propiedad para vender?</b><span>Nosotros encontramos al comprador ideal.</span></div></div>
+<!-- =====================================================
+     HERO PRINCIPAL - VIDEO
+====================================================== -->
+
+<section
+  class="hero"
+  aria-label="BS Inmobiliaria"
+>
+
+  <video
+    class="hero-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    aria-hidden="true"
+  >
+    <source
+      src="/videos/home-hero.mp4"
+      type="video/mp4"
+    >
+  </video>
+
+  <div class="hero-overlay"></div>
+
 </section>
-<section class="stats"><div><b>20+</b><span>años de experiencia</span></div><div><b>100+</b><span>propiedades en cartera</span></div><div><b>3</b><span>zonas principales</span></div></section>
-<section class="section"><h2>Propiedades destacadas</h2><p>Base inicial lista para empezar a cargar casas reales.</p><div class="grid"><app-property-card *ngFor="let property of featured" [property]="property" /></div></section>
-<section class="cta"><h2>Vende tu propiedad con nosotros</h2><p>Fotografía profesional, publicación en portales inmobiliarios, redes sociales y acompañamiento personalizado.</p><a routerLink="/contacto">Solicitar asesoría</a></section>
+
+
+<!-- =====================================================
+     BUSCADOR
+====================================================== -->
+
+<section
+  class="search-section"
+  aria-label="Buscar propiedades"
+>
+
+  <div class="container search-box">
+
+
+    <!-- COMPRAR / RENTAR -->
+
+    <div
+      class="search-tabs"
+      aria-label="Operación"
+    >
+
+      <button
+        type="button"
+        [class.active]="operation === 'Venta'"
+        (click)="operation = 'Venta'"
+      >
+        Comprar
+      </button>
+
+      <button
+        type="button"
+        [class.active]="operation === 'Renta'"
+        (click)="operation = 'Renta'"
+      >
+        Rentar
+      </button>
+
+    </div>
+
+
+    <!-- FILTROS -->
+
+    <div class="search-grid">
+
+
+      <!-- UBICACIÓN -->
+
+      <label>
+
+        <span>
+          Ubicación
+        </span>
+
+        <select [(ngModel)]="zone">
+
+          <option value="">
+            Todas las zonas
+          </option>
+
+          <option>
+            Lomas de Angelópolis
+          </option>
+
+          <option>
+            Cholula
+          </option>
+
+          <option>
+            Cuautlancingo
+          </option>
+
+        </select>
+
+      </label>
+
+
+      <!-- TIPO -->
+
+      <label>
+
+        <span>
+          Tipo de propiedad
+        </span>
+
+        <select [(ngModel)]="propertyType">
+
+          <option value="">
+            Todas
+          </option>
+
+          <option>
+            Casa
+          </option>
+
+          <option>
+            Departamento
+          </option>
+
+          <option>
+            Terreno
+          </option>
+
+        </select>
+
+      </label>
+
+
+      <!-- PRESUPUESTO -->
+
+      <label>
+
+        <span>
+          Presupuesto
+        </span>
+
+        <select [(ngModel)]="budget">
+
+          <option value="">
+            Cualquier precio
+          </option>
+
+          <option>
+            Hasta $3 M
+          </option>
+
+          <option>
+            $3 M – $6 M
+          </option>
+
+          <option>
+            $6 M – $10 M
+          </option>
+
+          <option>
+            Más de $10 M
+          </option>
+
+        </select>
+
+      </label>
+
+
+      <!-- BUSCAR -->
+
+      <a
+        routerLink="/propiedades"
+        class="search-submit"
+      >
+        Buscar
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     PROPIEDADES DESTACADAS
+====================================================== -->
+
+<section class="featured-section">
+
+  <div class="section-heading centered container">
+
+    <h2>
+      Propiedades destacadas
+    </h2>
+
+
+    <div class="heading-rule">
+
+      <span></span>
+
+      <p>
+        Nuestro listado exclusivo
+      </p>
+
+      <span></span>
+
+    </div>
+
+
+    <p class="section-intro">
+      Una selección de propiedades en Puebla
+      elegidas por ubicación, diseño y valor inmobiliario.
+    </p>
+
+  </div>
+
+
+  <div
+    class="featured-carousel"
+    aria-label="Propiedades destacadas"
+  >
+
+
+    <!-- FLECHA ANTERIOR PREMIUM -->
+
+    <button
+      class="featured-arrow left"
+      type="button"
+      aria-label="Propiedad anterior"
+      (click)="previousFeatured()"
+    >
+
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          d="M15 18l-6-6 6-6"
+        ></path>
+      </svg>
+
+    </button>
+
+
+    <!-- PROPIEDAD ANTERIOR -->
+
+    <a
+      class="featured-peek previous"
+      [routerLink]="[
+        '/propiedades',
+        featuredPrevious.property.slug
+      ]"
+    >
+
+      <img
+        [src]="featuredPrevious.image"
+        [alt]="featuredPrevious.property.title"
+      >
+
+    </a>
+
+
+    <!-- PROPIEDAD PRINCIPAL -->
+
+    <a
+      class="featured-main"
+      [routerLink]="[
+        '/propiedades',
+        featuredCurrent.property.slug
+      ]"
+    >
+
+      <img
+        [src]="featuredCurrent.image"
+        [alt]="featuredCurrent.property.title"
+      >
+
+
+      <div class="featured-overlay"></div>
+
+
+      <div class="featured-caption">
+
+        <p>
+          {{ featuredCurrent.property.location }}
+        </p>
+
+
+        <h3>
+          {{ featuredCurrent.property.title }}
+        </h3>
+
+
+        <div class="featured-meta">
+
+          <span>
+            {{ featuredCurrent.property.bedrooms }}
+            rec.
+          </span>
+
+          <span>
+            {{ featuredCurrent.property.bathrooms }}
+            baños
+          </span>
+
+          <span>
+            {{
+              featuredCurrent.property.constructionSize
+            }}
+            m²
+          </span>
+
+          <strong>
+            {{
+              featuredCurrent.property.price
+                | currency:'MXN':'symbol-narrow':'1.0-0'
+            }}
+          </strong>
+
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- PROPIEDAD SIGUIENTE -->
+
+    <a
+      class="featured-peek next"
+      [routerLink]="[
+        '/propiedades',
+        featuredNext.property.slug
+      ]"
+    >
+
+      <img
+        [src]="featuredNext.image"
+        [alt]="featuredNext.property.title"
+      >
+
+    </a>
+
+
+    <!-- FLECHA SIGUIENTE PREMIUM -->
+
+    <button
+      class="featured-arrow right"
+      type="button"
+      aria-label="Siguiente propiedad"
+      (click)="nextFeatured()"
+    >
+
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          d="M9 18l6-6-6-6"
+        ></path>
+      </svg>
+
+    </button>
+
+  </div>
+
+
+  <!-- VER TODAS -->
+
+  <div class="section-action container">
+
+    <a routerLink="/propiedades">
+
+      Ver todas las propiedades
+
+      <span aria-hidden="true">
+        →
+      </span>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     DESTINOS
+====================================================== -->
+
+<section
+  id="destinos"
+  class="destinations-section"
+>
+
+  <div class="section-heading container">
+
+    <div>
+
+      <span class="eyebrow">
+        Descubrir
+      </span>
+
+      <h2>
+        Vivir e invertir en Puebla
+      </h2>
+
+    </div>
+
+
+    <p>
+      Explora algunas de las zonas que concentran
+      estilo de vida, conectividad y oportunidades
+      inmobiliarias.
+    </p>
+
+  </div>
+
+
+  <div class="container destination-grid">
+
+    <a
+      routerLink="/propiedades"
+      class="destination-card"
+      *ngFor="let destination of destinations"
+    >
+
+      <img
+        [src]="destination.image"
+        [alt]="destination.name"
+        loading="lazy"
+      >
+
+
+      <div class="destination-shade"></div>
+
+
+      <div class="destination-copy">
+
+        <small>
+          {{ destination.description }}
+        </small>
+
+        <h3>
+          {{ destination.name }}
+        </h3>
+
+        <span>
+          Explorar →
+        </span>
+
+      </div>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     SOBRE BS INMOBILIARIA
+====================================================== -->
+
+<section
+  id="nosotros"
+  class="about-section"
+>
+
+  <div class="container about-grid">
+
+
+    <div>
+
+      <span class="eyebrow">
+        BS Inmobiliaria
+      </span>
+
+      <h2>
+        Una asesoría más cercana para decisiones
+        inmobiliarias importantes.
+      </h2>
+
+    </div>
+
+
+    <div class="about-copy">
+
+      <p>
+        Acompañamos procesos de compra, venta e inversión
+        con conocimiento del mercado de Puebla, seguimiento
+        personalizado y una presentación cuidada de cada
+        propiedad.
+      </p>
+
+      <a routerLink="/servicios">
+
+        Conoce nuestros servicios
+
+        <span aria-hidden="true">
+          →
+        </span>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     VENDE CON NOSOTROS
+====================================================== -->
+
+<section
+  id="vende"
+  class="sell-section"
+>
+
+  <div class="container sell-grid">
+
+
+    <div>
+
+      <span class="eyebrow light">
+        Vende con nosotros
+      </span>
+
+      <h2>
+        Tu propiedad merece una estrategia
+        y una presentación a la altura.
+      </h2>
+
+    </div>
+
+
+    <div>
+
+      <p>
+        Te ayudamos con precio, contenido visual,
+        promoción digital, atención a prospectos
+        y seguimiento comercial.
+      </p>
+
+      <a
+        routerLink="/contacto"
+        class="sell-link"
+      >
+
+        Quiero vender mi propiedad
+
+        <span aria-hidden="true">
+          →
+        </span>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     TESTIMONIOS
+====================================================== -->
+
+<section
+  id="testimonios"
+  class="testimonials-section"
+>
+
+  <div class="container testimonials-heading">
+
+    <div>
+
+      <span class="eyebrow">
+        Experiencias BS
+      </span>
+
+      <h2>
+        Historias que empiezan
+        en casa.
+      </h2>
+
+    </div>
+
+
+    <p>
+      Cada propiedad representa una decisión importante.
+      Nuestro compromiso es acompañar cada proceso con
+      cercanía, claridad y confianza.
+    </p>
+
+  </div>
+
+
+  <div class="container testimonials-grid">
+
+    <article
+      class="testimonial-card"
+      *ngFor="let testimonial of testimonials"
+    >
+
+      <div class="testimonial-frame">
+
+        <div class="testimonial-image">
+
+          <img
+            [src]="testimonial.image"
+            [alt]="testimonial.label"
+            loading="lazy"
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="testimonial-content">
+
+        <span
+          class="testimonial-quote-mark"
+          aria-hidden="true"
+        >
+          “
+        </span>
+
+        <blockquote>
+          {{ testimonial.quote }}
+        </blockquote>
+
+
+        <div class="testimonial-client">
+
+          <strong>
+            {{ testimonial.label }}
+          </strong>
+
+          <span>
+            {{ testimonial.detail }}
+          </span>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+

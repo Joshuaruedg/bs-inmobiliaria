@@ -1,1 +1,1109 @@
-.detail-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center;padding:56px 6%;background:#f5f9fc}.detail-hero img{width:100%;height:520px;object-fit:cover;border-radius:34px;box-shadow:0 20px 55px rgba(2,27,63,.16)}span{color:#0aa6d6;font-weight:900}h1{font-size:46px;color:#062b5f;margin:8px 0}strong{display:block;font-size:34px;color:#021b3f;margin:20px 0}a{display:inline-block;background:#0aa6d6;color:white;padding:15px 20px;border-radius:16px;font-weight:900}.detail-grid{display:grid;grid-template-columns:1fr 330px;gap:28px;padding:48px 6% 72px}main,aside{background:white;border-radius:28px;padding:28px;box-shadow:0 16px 40px rgba(2,27,63,.08)}h2{color:#062b5f}li{margin:10px 0}aside{height:max-content;display:grid;gap:12px}aside b{font-size:24px;color:#062b5f}aside span{color:#1c2430;background:#f0f7fb;padding:12px;border-radius:14px}@media(max-width:850px){.detail-hero,.detail-grid{grid-template-columns:1fr}.detail-hero img{height:320px}}
+:host {
+  display: block;
+  background: #fff;
+}
+
+
+/* =========================================================
+   PÁGINA
+========================================================= */
+
+.detail-page {
+  min-height: 100vh;
+
+  padding:
+    118px
+    0
+    90px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f5f9fb 0,
+      #ffffff 290px
+    );
+}
+
+
+.detail-container {
+  position: relative;
+}
+
+
+/* =========================================================
+   VOLVER AL CATÁLOGO
+========================================================= */
+
+.back-button {
+  position: relative;
+  z-index: 5;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding:
+    10px
+    0;
+
+  margin:
+    0
+    0
+    28px;
+
+  border: 0;
+
+  background: transparent;
+
+  color:
+    var(--bs-navy);
+
+  cursor: pointer;
+
+  font-family:
+    var(--font-body);
+
+  font-size:
+    .76rem;
+
+  font-weight:
+    700;
+
+  transition:
+    gap .2s ease,
+    color .2s ease;
+}
+
+
+.back-button:hover {
+  gap: 15px;
+
+  color:
+    var(--bs-cyan);
+}
+
+
+.back-button:focus-visible {
+  outline:
+    2px solid
+    var(--bs-cyan);
+
+  outline-offset:
+    5px;
+}
+
+
+/* =========================================================
+   TÍTULO
+========================================================= */
+
+.title-row {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+  gap: 48px;
+
+  align-items: end;
+
+  margin-bottom:
+    38px;
+}
+
+
+.title-copy {
+  max-width:
+    920px;
+}
+
+
+.title-row h1 {
+  max-width:
+    900px;
+
+  margin:
+    12px
+    0;
+
+  color:
+    var(--bs-navy);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(
+      3rem,
+      5.4vw,
+      5.1rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    .98;
+
+  letter-spacing:
+    -.035em;
+}
+
+
+.title-row p {
+  margin: 0;
+
+  color:
+    var(--bs-muted);
+
+  font-size:
+    .96rem;
+}
+
+
+/* =========================================================
+   PRECIO
+========================================================= */
+
+.price-block {
+  min-width:
+    220px;
+
+  padding-bottom:
+    8px;
+
+  text-align:
+    right;
+}
+
+
+.price-block span {
+  display: block;
+
+  margin-bottom:
+    7px;
+
+  color:
+    var(--bs-muted);
+
+  font-size:
+    .62rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    .09em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.price-block strong {
+  color:
+    var(--bs-navy);
+
+  font-size:
+    clamp(
+      1.65rem,
+      2.3vw,
+      2.25rem
+    );
+
+  line-height:
+    1;
+}
+
+
+/* =========================================================
+   GALERÍA
+========================================================= */
+
+.gallery {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.65fr)
+    minmax(280px, .85fr);
+
+  gap:
+    14px;
+
+  min-height:
+    480px;
+}
+
+
+.gallery-item {
+  min-width: 0;
+
+  min-height:
+    480px;
+
+  overflow: hidden;
+
+  background:
+    #eaf0f3;
+}
+
+
+.gallery img {
+  width:
+    100%;
+
+  height:
+    100%;
+
+  display: block;
+
+  object-fit:
+    cover;
+
+  transition:
+    transform .5s ease;
+}
+
+
+.gallery-item:hover img {
+  transform:
+    scale(1.015);
+}
+
+
+/* =========================================================
+   CONTENIDO
+========================================================= */
+
+.content-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    360px;
+
+  gap:
+    58px;
+
+  margin-top:
+    48px;
+}
+
+
+.property-content {
+  min-width: 0;
+}
+
+
+/* =========================================================
+   DATOS GENERALES
+========================================================= */
+
+.specs {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      5,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    20px;
+
+  padding-bottom:
+    34px;
+
+  border-bottom:
+    1px solid
+    #e2e9ed;
+}
+
+
+.specs div {
+  display: flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    5px;
+}
+
+
+.specs strong {
+  color:
+    var(--bs-navy);
+
+  font-size:
+    1.18rem;
+
+  font-weight:
+    700;
+}
+
+
+.specs span {
+  color:
+    #7a8796;
+
+  font-size:
+    .76rem;
+}
+
+
+/* =========================================================
+   EYEBROW GENERAL
+========================================================= */
+
+.section-eyebrow {
+  display: block;
+
+  margin-bottom:
+    13px;
+
+  color:
+    var(--bs-cyan);
+
+  font-family:
+    var(--font-body);
+
+  font-size:
+    .64rem;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    .17em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   DESCRIPCIÓN
+========================================================= */
+
+.description-block {
+  padding:
+    50px
+    0
+    48px;
+
+  border-bottom:
+    1px solid
+    #e4eaed;
+}
+
+
+.description-block h2 {
+  max-width:
+    650px;
+
+  margin:
+    0
+    0
+    20px;
+
+  color:
+    var(--bs-navy);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(
+      2.15rem,
+      3.4vw,
+      3.15rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.04;
+
+  letter-spacing:
+    -.02em;
+}
+
+
+.description-block p {
+  max-width:
+    790px;
+
+  margin: 0;
+
+  color:
+    #667586;
+
+  font-family:
+    var(--font-body);
+
+  font-size:
+    .96rem;
+
+  line-height:
+    1.9;
+}
+
+
+/* =========================================================
+   DISTRIBUCIÓN
+========================================================= */
+
+.distribution-section {
+  padding-top:
+    52px;
+}
+
+
+.distribution-heading {
+  margin-bottom:
+    34px;
+}
+
+
+.distribution-heading h2 {
+  margin: 0;
+
+  color:
+    var(--bs-navy);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(
+      2rem,
+      3vw,
+      2.8rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.05;
+
+  letter-spacing:
+    -.02em;
+}
+
+
+.distribution-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  column-gap:
+    52px;
+
+  row-gap:
+    50px;
+}
+
+
+/* =========================================================
+   BLOQUES POR NIVEL
+========================================================= */
+
+.distribution-card {
+  position: relative;
+
+  padding-top:
+    25px;
+
+  border-top:
+    1px solid
+    #ccd8dd;
+}
+
+
+.distribution-card::before {
+  content: '';
+
+  position: absolute;
+
+  top: -1px;
+  left: 0;
+
+  width:
+    42px;
+
+  height:
+    2px;
+
+  background:
+    var(--bs-cyan);
+}
+
+
+.level-number {
+  display: block;
+
+  margin-bottom:
+    9px;
+
+  color:
+    var(--bs-cyan);
+
+  font-family:
+    var(--font-body);
+
+  font-size:
+    .64rem;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    .16em;
+}
+
+
+.distribution-card h3 {
+  margin:
+    0
+    0
+    20px;
+
+  color:
+    var(--bs-navy);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    1.75rem;
+
+  font-weight:
+    500;
+
+  line-height:
+    1.1;
+}
+
+
+/* =========================================================
+   LISTAS
+========================================================= */
+
+.distribution-card ul {
+  display: grid;
+
+  gap:
+    11px;
+
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+
+.distribution-card li {
+  position: relative;
+
+  padding-left:
+    17px;
+
+  color:
+    #5d6c7c;
+
+  font-family:
+    var(--font-body);
+
+  font-size:
+    .88rem;
+
+  line-height:
+    1.55;
+}
+
+
+.distribution-card li::before {
+  content: '';
+
+  position: absolute;
+
+  top:
+    .67em;
+
+  left: 0;
+
+  width:
+    5px;
+
+  height:
+    1px;
+
+  background:
+    var(--bs-cyan);
+}
+
+
+/* =========================================================
+   AMENIDADES
+========================================================= */
+
+.amenities-card {
+  background:
+    transparent;
+}
+
+
+/* =========================================================
+   CARACTERÍSTICAS DE OTRAS PROPIEDADES
+========================================================= */
+
+.features-block {
+  padding-top:
+    42px;
+}
+
+
+.features-block h2 {
+  margin:
+    0
+    0
+    20px;
+
+  color:
+    var(--bs-navy);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    2rem;
+
+  font-weight:
+    500;
+}
+
+
+.features-block ul {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    10px
+    28px;
+
+  margin: 0;
+
+  padding-left:
+    20px;
+}
+
+
+.features-block li {
+  color:
+    #526173;
+
+  line-height:
+    1.6;
+}
+
+
+/* =========================================================
+   CONTACTO
+========================================================= */
+
+.contact-card {
+  position:
+    sticky;
+
+  top:
+    110px;
+
+  height:
+    max-content;
+
+  padding:
+    30px;
+
+  border:
+    1px solid
+    #dce9ef;
+
+  background:
+    #f0f7fa;
+
+  box-shadow:
+    0
+    14px
+    36px
+    rgba(
+      3,
+      45,
+      88,
+      .06
+    );
+}
+
+
+.contact-eyebrow {
+  display: block;
+
+  margin-bottom:
+    18px;
+
+  color:
+    var(--bs-cyan);
+
+  font-size:
+    .66rem;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    .08em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.contact-card h3 {
+  margin:
+    0
+    0
+    16px;
+
+  color:
+    var(--bs-navy);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    2rem;
+
+  font-weight:
+    600;
+
+  line-height:
+    1.05;
+}
+
+
+.contact-card p {
+  margin: 0;
+
+  color:
+    #6d7b8b;
+
+  font-size:
+    .9rem;
+
+  line-height:
+    1.7;
+}
+
+
+/* =========================================================
+   BOTONES DE CONTACTO
+========================================================= */
+
+.contact-actions {
+  display: grid;
+
+  gap:
+    10px;
+
+  margin-top:
+    24px;
+}
+
+
+.contact-button {
+  min-height:
+    48px;
+
+  display: flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  padding:
+    12px
+    16px;
+
+  border:
+    1px solid
+    var(--bs-navy);
+
+  font-size:
+    .72rem;
+
+  font-weight:
+    700;
+
+  text-align:
+    center;
+
+  text-decoration:
+    none;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    border-color .2s ease;
+}
+
+
+.contact-button.primary {
+  background:
+    var(--bs-navy);
+
+  color:
+    #ffffff;
+}
+
+
+.contact-button.primary:hover {
+  background:
+    var(--bs-cyan);
+
+  border-color:
+    var(--bs-cyan);
+}
+
+
+.contact-button.secondary {
+  background:
+    #ffffff;
+
+  color:
+    var(--bs-navy);
+
+  border:
+    1px solid
+    var(--bs-navy);
+
+  transition:
+    background .22s ease,
+    color .22s ease,
+    border-color .22s ease,
+    transform .22s ease;
+}
+
+
+.contact-button.secondary:hover {
+  background:
+    var(--bs-cyan);
+
+  color:
+    #ffffff;
+
+  border-color:
+    var(--bs-cyan);
+
+  transform:
+    translateY(-2px);
+}
+
+
+.contact-button.secondary:active {
+  transform:
+    translateY(0);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 980px) {
+
+  .detail-page {
+    padding-top:
+      108px;
+  }
+
+
+  .content-grid {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      42px;
+  }
+
+
+  .contact-card {
+    position:
+      static;
+  }
+
+
+  .specs {
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(0, 1fr)
+      );
+  }
+
+}
+
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media (max-width: 760px) {
+
+  .title-row {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      20px;
+  }
+
+
+  .price-block {
+    min-width:
+      0;
+
+    text-align:
+      left;
+  }
+
+
+  .gallery {
+    grid-template-columns:
+      1fr;
+
+    min-height:
+      0;
+  }
+
+
+  .gallery-item {
+    min-height:
+      300px;
+  }
+
+
+  .distribution-grid {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      38px;
+  }
+
+
+  .features-block ul {
+    grid-template-columns:
+      1fr;
+  }
+
+}
+
+
+/* =========================================================
+   MÓVIL PEQUEÑO
+========================================================= */
+
+@media (max-width: 560px) {
+
+  .detail-page {
+    padding:
+      98px
+      0
+      64px;
+  }
+
+
+  .title-row h1 {
+    font-size:
+      2.65rem;
+  }
+
+
+  .specs {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    gap:
+      20px
+      14px;
+  }
+
+
+  .gallery-item {
+    min-height:
+      240px;
+  }
+
+
+  .description-block {
+    padding:
+      38px
+      0;
+  }
+
+
+  .description-block h2 {
+    font-size:
+      2.05rem;
+  }
+
+
+  .distribution-section {
+    padding-top:
+      40px;
+  }
+
+
+  .distribution-heading {
+    margin-bottom:
+      28px;
+  }
+
+
+  .distribution-heading h2 {
+    font-size:
+      1.95rem;
+  }
+
+
+  .distribution-card h3 {
+    font-size:
+      1.55rem;
+  }
+
+
+  .contact-card {
+    padding:
+      24px;
+  }
+
+}

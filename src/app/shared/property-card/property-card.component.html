@@ -1,15 +1,4 @@
 <article class="property-card">
-  <div class="image"><img [src]="property.image" [alt]="property.title"><span>{{property.operation | uppercase}}</span></div>
-  <div class="content">
-    <p class="zone">{{property.zone}}</p>
-    <h3>{{property.title}}</h3>
-    <p class="location">{{property.location}}</p>
-    <strong>{{property.price | currency:'MXN':'symbol':'1.0-0'}}</strong>
-    <div class="details">
-      <small *ngIf="property.bedrooms">{{property.bedrooms}} rec.</small>
-      <small *ngIf="property.bathrooms">{{property.bathrooms}} baños</small>
-      <small *ngIf="property.constructionSize">{{property.constructionSize}} m² const.</small>
-    </div>
-    <a [routerLink]="['/propiedades', property.id]">Ver propiedad</a>
-  </div>
+  <a [routerLink]="['/propiedades',property.slug]" class="image-wrap"><img [src]="property.image" [alt]="property.title"><span class="pill">{{property.operation}}</span></a>
+  <div class="content"><p class="location">{{property.location}}</p><h3>{{property.title}}</h3><div class="specs"><span>{{property.bedrooms}} rec.</span><span>{{property.bathrooms}} baños</span><span>{{property.constructionSize}} m²</span></div><div class="bottom"><strong>{{property.price | currency:'MXN':'symbol-narrow':'1.0-0'}}</strong><a [routerLink]="['/propiedades',property.slug]">Ver propiedad →</a></div></div>
 </article>

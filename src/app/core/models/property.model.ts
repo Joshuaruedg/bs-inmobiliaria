@@ -1,22 +1,20 @@
 export interface Property {
   id: number;
+  slug: string;
   title: string;
   location: string;
-  zone: 'Lomas de Angelópolis' | 'Cholula' | 'Cuautlancingo' | 'Puebla' | 'Otro';
+  zone: string;
   price: number;
-  operation: 'venta' | 'renta';
-  type: 'casa' | 'departamento' | 'terreno';
-  bedrooms?: number;
-  bathrooms?: number;
-  parking?: number;
-  landSize?: number;
-  constructionSize?: number;
+  operation: 'Venta' | 'Renta';
+  type: 'Casa' | 'Departamento' | 'Terreno';
+  bedrooms: number;
+  bathrooms: number;
+  parking: number;
+  landSize: number;
+  constructionSize: number;
   image: string;
   gallery: string[];
   description: string;
   features: string[];
-  distribution?: string[];
-  advisor: string;
-  phone: string;
-  featured?: boolean;
+  featured: boolean;
 }

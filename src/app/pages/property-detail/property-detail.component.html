@@ -1,4 +1,1596 @@
-<ng-container *ngIf="property; else notFound">
-  <section class="detail-hero"><img [src]="property.image" [alt]="property.title"><div><span>{{property.zone}}</span><h1>{{property.title}}</h1><p>{{property.location}}</p><strong>{{property.price | currency:'MXN':'symbol':'1.0-0'}}</strong><a [href]="whatsapp()" target="_blank">Pedir información por WhatsApp</a></div></section>
-  <section class="detail-grid"><main><h2>Descripción</h2><p>{{property.description}}</p><h2>Características</h2><ul><li *ngFor="let item of property.features">{{item}}</li></ul><h2 *ngIf="property.distribution?.length">Distribución</h2><ul><li *ngFor="let item of property.distribution">{{item}}</li></ul></main><aside><b>Ficha rápida</b><span>{{property.bedrooms || '-'}} recámaras</span><span>{{property.bathrooms || '-'}} baños</span><span>{{property.parking || '-'}} estacionamientos</span><span>{{property.landSize || '-'}} m² terreno</span><span>{{property.constructionSize || '-'}} m² construcción</span><small>Asesor: {{property.advisor}}</small></aside></section>
-</ng-container><ng-template #notFound><section class="not-found"><h1>Propiedad no encontrada</h1><a routerLink="/propiedades">Regresar</a></section></ng-template>
+<section class="detail-page">
+
+  <div class="container detail-container">
+
+    <!-- =====================================================
+         VOLVER AL CATÁLOGO
+    ====================================================== -->
+
+    <button
+      type="button"
+      class="back-button"
+      (click)="goToCatalog()"
+      aria-label="Volver al catálogo de propiedades"
+    >
+
+      <span aria-hidden="true">
+        ←
+      </span>
+
+      Volver al catálogo
+
+    </button>
+
+
+    <!-- =====================================================
+         ENCABEZADO
+    ====================================================== -->
+
+    <div class="title-row">
+
+      <div class="title-copy">
+
+        <span class="eyebrow">
+          {{ property.operation }} · {{ property.type }}
+        </span>
+
+        <h1>
+          {{ property.title }}
+        </h1>
+
+        <p>
+          {{ property.location }}
+        </p>
+
+      </div>
+
+
+      <!-- PRECIO -->
+
+      <div class="price-block">
+
+        <span>
+          {{ property.id === 2 ? 'Precio desde' : 'Precio' }}
+        </span>
+
+        <strong>
+          {{
+            property.price
+              | currency:'MXN':'symbol-narrow':'1.0-0'
+          }}
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         GALERÍA
+    ====================================================== -->
+
+    <div class="gallery">
+
+      <div
+        class="gallery-item"
+        *ngFor="
+          let image of property.gallery;
+          let i = index
+        "
+      >
+
+        <img
+          [src]="image"
+          [alt]="property.title"
+          (error)="imageError($event, i)"
+        >
+
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         CONTENIDO
+    ====================================================== -->
+
+    <div class="content-grid">
+
+
+      <!-- ===================================================
+           INFORMACIÓN DE LA PROPIEDAD
+      ==================================================== -->
+
+      <article class="property-content">
+
+
+        <!-- DATOS GENERALES -->
+
+        <div class="specs">
+
+          <div>
+
+            <strong>
+              {{ property.bedrooms }}
+            </strong>
+
+            <span>
+              Recámaras
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <strong>
+              {{ property.bathrooms }}
+            </strong>
+
+            <span>
+              Baños
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <strong>
+              {{ property.parking }}
+            </strong>
+
+            <span>
+              Estacionamientos
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <strong>
+              {{ property.landSize }} m²
+            </strong>
+
+            <span>
+              Terreno
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <strong>
+              {{ property.constructionSize }} m²
+            </strong>
+
+            <span>
+              Construcción
+            </span>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             DESCRIPCIÓN CASCATTA
+        ================================================== -->
+
+        <section
+          class="description-block"
+          *ngIf="property.id === 1"
+        >
+
+          <span class="section-eyebrow">
+            La residencia
+          </span>
+
+          <h2>
+            Amplitud, diseño y espacios para disfrutar
+          </h2>
+
+          <p>
+            Residencia ubicada en Cascatta, Lomas de Angelópolis,
+            diseñada para combinar amplitud, funcionalidad y una
+            experiencia residencial contemporánea.
+          </p>
+
+          <p>
+            La planta baja integra una sala a doble altura,
+            comedor y cocina integral equipada con isla y cubiertas
+            de granito, creando un área social amplia y luminosa
+            que se conecta con el jardín privado.
+          </p>
+
+          <p>
+            En el primer nivel se encuentra la recámara principal
+            con vestidor, baño completo y balcón, además de dos
+            recámaras secundarias, cada una con baño completo.
+          </p>
+
+          <p>
+            El segundo nivel complementa la residencia con sala
+            de TV, cuarto de servicio, cuarta recámara y roof garden
+            techado, ideal para disfrutar reuniones y momentos
+            al aire libre.
+          </p>
+
+        </section>
+
+
+        <!-- =================================================
+             DISTRIBUCIÓN CASCATTA
+        ================================================== -->
+
+        <section
+          class="distribution-section"
+          *ngIf="property.id === 1"
+        >
+
+          <div class="distribution-heading">
+
+            <span class="section-eyebrow">
+              Distribución
+            </span>
+
+            <h2>
+              Distribución por niveles
+            </h2>
+
+          </div>
+
+
+          <div class="distribution-grid">
+
+
+            <!-- PLANTA BAJA -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                01
+              </span>
+
+              <h3>
+                Planta baja
+              </h3>
+
+              <ul>
+
+                <li>
+                  Cochera techada para 2 autos
+                </li>
+
+                <li>
+                  Sala a doble altura
+                </li>
+
+                <li>
+                  Comedor
+                </li>
+
+                <li>
+                  Cocina integral equipada con isla y cubiertas de granito
+                </li>
+
+                <li>
+                  Horno y campana extractora
+                </li>
+
+                <li>
+                  Medio baño de visitas
+                </li>
+
+                <li>
+                  Jardín privado
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- PRIMER NIVEL -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                02
+              </span>
+
+              <h3>
+                Primer nivel
+              </h3>
+
+              <ul>
+
+                <li>
+                  Recámara principal con vestidor, baño completo y balcón
+                </li>
+
+                <li>
+                  2 recámaras secundarias, cada una con baño completo
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- SEGUNDO NIVEL -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                03
+              </span>
+
+              <h3>
+                Segundo nivel
+              </h3>
+
+              <ul>
+
+                <li>
+                  Sala de TV
+                </li>
+
+                <li>
+                  Cuarto de servicio
+                </li>
+
+                <li>
+                  Roof garden techado
+                </li>
+
+                <li>
+                  4ª recámara
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- AMENIDADES -->
+
+            <article class="distribution-card amenities-card">
+
+              <span class="level-number">
+                04
+              </span>
+
+              <h3>
+                Amenidades
+              </h3>
+
+              <ul>
+
+                <li>
+                  Acceso controlado
+                </li>
+
+                <li>
+                  Caseta de vigilancia
+                </li>
+
+                <li>
+                  Salón de usos múltiples
+                </li>
+
+                <li>
+                  Área de juegos
+                </li>
+
+                <li>
+                  Áreas comunes
+                </li>
+
+              </ul>
+
+            </article>
+
+          </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DESCRIPCIÓN XILOTZINGO
+        ================================================== -->
+
+        <section
+          class="description-block"
+          *ngIf="property.id === 2"
+        >
+
+          <span class="section-eyebrow">
+            La residencia
+          </span>
+
+          <h2>
+            Un hogar funcional, contemporáneo y lleno de luz
+          </h2>
+
+          <p>
+            Casas en preventa en Xilotzingo, Puebla,
+            diseñadas para aprovechar cada espacio con una
+            distribución funcional, acabados contemporáneos
+            y excelente iluminación natural.
+          </p>
+
+          <p>
+            Cada residencia cuenta con sala, comedor,
+            cocina integral equipada, patio trasero privado
+            y tres recámaras. La recámara principal integra
+            vestidor y baño completo privado, creando un
+            espacio cómodo y con mayor privacidad.
+          </p>
+
+        </section>
+
+
+        <!-- =================================================
+             CARACTERÍSTICAS XILOTZINGO
+        ================================================== -->
+
+        <section
+          class="distribution-section"
+          *ngIf="property.id === 2"
+        >
+
+          <div class="distribution-heading">
+
+            <span class="section-eyebrow">
+              Características
+            </span>
+
+            <h2>
+              Espacios pensados para tu día a día
+            </h2>
+
+          </div>
+
+
+          <div class="distribution-grid">
+
+
+            <!-- ESPACIOS INTERIORES -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                01
+              </span>
+
+              <h3>
+                Espacios interiores
+              </h3>
+
+              <ul>
+
+                <li>
+                  Sala
+                </li>
+
+                <li>
+                  Comedor
+                </li>
+
+                <li>
+                  Cocina integral equipada
+                </li>
+
+                <li>
+                  Excelente iluminación natural
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- ZONA PRIVADA -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                02
+              </span>
+
+              <h3>
+                Zona privada
+              </h3>
+
+              <ul>
+
+                <li>
+                  3 recámaras
+                </li>
+
+                <li>
+                  Recámara principal con vestidor
+                </li>
+
+                <li>
+                  Baño completo privado
+                </li>
+
+                <li>
+                  2½ baños
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- EXTERIOR Y DIMENSIONES -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                03
+              </span>
+
+              <h3>
+                Exterior y dimensiones
+              </h3>
+
+              <ul>
+
+                <li>
+                  Patio trasero privado
+                </li>
+
+                <li>
+                  Cochera para 2 autos
+                </li>
+
+                <li>
+                  Terreno desde 78 m²
+                </li>
+
+                <li>
+                  Construcción desde 109 m²
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- OPCIONES DE COMPRA -->
+
+            <article class="distribution-card amenities-card">
+
+              <span class="level-number">
+                04
+              </span>
+
+              <h3>
+                Opciones de compra
+              </h3>
+
+              <ul>
+
+                <li>
+                  Preventa desde $2,480,000 MXN
+                </li>
+
+                <li>
+                  Casa terminada desde $2,580,000 MXN
+                </li>
+
+              </ul>
+
+            </article>
+
+          </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DESCRIPCIÓN LOMAS III
+        ================================================== -->
+
+        <section
+          class="description-block"
+          *ngIf="property.id === 3"
+        >
+
+          <span class="section-eyebrow">
+            La residencia
+          </span>
+
+          <h2>
+            Diseñada para disfrutar cada espacio
+          </h2>
+
+          <p>
+            {{ property.description }}
+          </p>
+
+        </section>
+
+
+        <!-- =================================================
+             DISTRIBUCIÓN LOMAS III
+        ================================================== -->
+
+        <section
+          class="distribution-section"
+          *ngIf="property.id === 3"
+        >
+
+          <div class="distribution-heading">
+
+            <span class="section-eyebrow">
+              Distribución
+            </span>
+
+            <h2>
+              Distribución por niveles
+            </h2>
+
+          </div>
+
+
+          <div class="distribution-grid">
+
+
+            <!-- PLANTA BAJA -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                01
+              </span>
+
+              <h3>
+                Planta baja
+              </h3>
+
+              <ul>
+
+                <li>
+                  Cochera para 2 autos
+                </li>
+
+                <li>
+                  Sala
+                </li>
+
+                <li>
+                  Comedor
+                </li>
+
+                <li>
+                  Cocina integral con barra de cuarzo
+                </li>
+
+                <li>
+                  Baño de visitas
+                </li>
+
+                <li>
+                  Jardín
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- PRIMER NIVEL -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                02
+              </span>
+
+              <h3>
+                Primer nivel
+              </h3>
+
+              <ul>
+
+                <li>
+                  Recámara principal con baño completo y vestidor
+                </li>
+
+                <li>
+                  2 recámaras secundarias con clóset
+                </li>
+
+                <li>
+                  Baño completo compartido
+                </li>
+
+                <li>
+                  Sala de TV
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- SEGUNDO NIVEL -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                03
+              </span>
+
+              <h3>
+                Segundo nivel
+              </h3>
+
+              <ul>
+
+                <li>
+                  Roof garden con pergolado
+                </li>
+
+                <li>
+                  Barra con tarja
+                </li>
+
+                <li>
+                  Cuarto de lavado
+                </li>
+
+                <li>
+                  Área de tendido
+                </li>
+
+                <li>
+                  Baño de visitas
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- AMENIDADES -->
+
+            <article class="distribution-card amenities-card">
+
+              <span class="level-number">
+                04
+              </span>
+
+              <h3>
+                Amenidades del parque
+              </h3>
+
+              <ul>
+
+                <li>
+                  Casa club con jardín
+                </li>
+
+                <li>
+                  Área de juegos
+                </li>
+
+              </ul>
+
+            </article>
+
+          </div>
+
+        </section>
+
+
+
+
+        <!-- =================================================
+             DESCRIPCIÓN CASA EN ESQUINA CASCATTA
+        ================================================== -->
+
+<!-- =================================================
+     DESCRIPCIÓN CASA EN ESQUINA CASCATTA
+================================================== -->
+
+<section
+  class="description-block"
+  *ngIf="property.id === 4"
+>
+
+  <span class="section-eyebrow">
+    La residencia
+  </span>
+
+  <h2>
+    Diseño, privacidad y amplitud en esquina
+  </h2>
+
+  <p>
+    Casa en venta en esquina en Cascatta, Lomas de Angelópolis,
+    con 150.79 m² de terreno y 282 m² de construcción.
+  </p>
+
+  <p>
+    En planta baja cuenta con cochera para 2 autos, chapa digital
+    en puerta principal, sala a doble altura con iluminación natural,
+    muro decorativo para televisión, comedor con vista al jardín,
+    cocina equipada con horno, microondas, lavavajillas y frigobar
+    línea TEKA, estudio u oficina, medio baño de visitas y jardín
+    privado con área para asador.
+  </p>
+
+  <p>
+    En el primer nivel se encuentra la recámara principal con baño
+    privado, doble lavabo y vestidor, además de una recámara secundaria
+    con clóset y baño completo.
+  </p>
+
+  <p>
+    El segundo nivel integra una recámara secundaria con clóset y baño
+    completo, un espacio con opción a cuarta recámara, baño completo
+    y terraza ideal para reuniones y convivencia. Todas las recámaras
+    cuentan con preparación para aire acondicionado.
+  </p>
+
+</section>
+
+
+        <!-- =================================================
+             DISTRIBUCIÓN CASA EN ESQUINA CASCATTA
+        ================================================== -->
+
+        <section
+          class="distribution-section"
+          *ngIf="property.id === 4"
+        >
+
+          <div class="distribution-heading">
+
+            <span class="section-eyebrow">
+              Distribución
+            </span>
+
+            <h2>
+              Distribución por niveles
+            </h2>
+
+          </div>
+
+
+          <div class="distribution-grid">
+
+
+            <!-- PLANTA BAJA -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                01
+              </span>
+
+              <h3>
+                Planta baja
+              </h3>
+
+              <ul>
+
+                <li>
+                  Cochera para 2 autos
+                </li>
+
+                <li>
+                  Chapa digital en puerta principal
+                </li>
+
+                <li>
+                  Sala a doble altura con iluminación natural
+                </li>
+
+                <li>
+                  Muro decorativo para televisión
+                </li>
+
+                <li>
+                  Comedor con vista al jardín
+                </li>
+
+                <li>
+                  Cocina equipada con horno, microondas,
+                  lavavajillas y frigobar, línea TEKA
+                </li>
+
+                <li>
+                  Estudio / oficina con clóset pequeño
+                </li>
+
+                <li>
+                  Medio baño de visitas
+                </li>
+
+                <li>
+                  Jardín privado con área para asador
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- PRIMER NIVEL -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                02
+              </span>
+
+              <h3>
+                Primer nivel
+              </h3>
+
+              <ul>
+
+                <li>
+                  Recámara principal con baño privado,
+                  doble lavabo y vestidor
+                </li>
+
+                <li>
+                  Recámara secundaria con clóset
+                  y baño completo
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- SEGUNDO NIVEL -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                03
+              </span>
+
+              <h3>
+                Segundo nivel
+              </h3>
+
+              <ul>
+
+                <li>
+                  Recámara secundaria con clóset
+                  y baño completo
+                </li>
+
+                <li>
+                  Espacio con opción a cuarta recámara
+                </li>
+
+                <li>
+                  Baño completo
+                </li>
+
+                <li>
+                  Terraza ideal para reuniones
+                  y convivencia
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- DETALLES DESTACADOS -->
+
+            <article class="distribution-card amenities-card">
+
+              <span class="level-number">
+                04
+              </span>
+
+              <h3>
+                Detalles destacados
+              </h3>
+
+              <ul>
+
+                <li>
+                  Ubicación en esquina
+                </li>
+
+                <li>
+                  Cocina equipada con línea TEKA
+                </li>
+
+                <li>
+                  Jardín privado con área para asador
+                </li>
+
+                <li>
+                  Preparación para aire acondicionado
+                  en todas las recámaras
+                </li>
+
+                <li>
+                  Terraza ideal para reuniones
+                  y convivencia
+                </li>
+
+              </ul>
+
+            </article>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             DESCRIPCIÓN RESIDENCIA CASCATTA ID 5
+        ================================================== -->
+
+        <section
+          class="description-block"
+          *ngIf="property.id === 5"
+        >
+
+          <span class="section-eyebrow">
+            La residencia
+          </span>
+
+          <h2>
+            Amplitud, funcionalidad y espacios para disfrutar
+          </h2>
+
+          <p>
+            Casa en venta en Cascatta, Lomas de Angelópolis,
+            con 180 m² de terreno y 330 m² de construcción,
+            distribuida en tres niveles.
+          </p>
+
+          <p>
+            La planta baja integra una recámara con baño completo
+            y clóset, sala comedor amplia, cocina integral con isla,
+            alacena y torre de hornos, baño de visitas y jardín.
+          </p>
+
+          <p>
+            En el primer nivel se encuentra la sala de TV,
+            la recámara principal con vestidor y baño completo
+            con tina, además de dos recámaras secundarias,
+            cada una con clóset y baño completo.
+          </p>
+
+          <p>
+            El segundo nivel complementa la propiedad con roof garden,
+            baño completo, cuarto de lavado, área de tendido y terraza.
+          </p>
+
+        </section>
+
+
+        <!-- =================================================
+             DISTRIBUCIÓN RESIDENCIA CASCATTA ID 5
+        ================================================== -->
+
+        <section
+          class="distribution-section"
+          *ngIf="property.id === 5"
+        >
+
+          <div class="distribution-heading">
+
+            <span class="section-eyebrow">
+              Distribución
+            </span>
+
+            <h2>
+              Distribución por niveles
+            </h2>
+
+          </div>
+
+
+          <div class="distribution-grid">
+
+
+            <!-- PLANTA BAJA -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                01
+              </span>
+
+              <h3>
+                Planta baja
+              </h3>
+
+              <ul>
+
+                <li>
+                  Acceso principal
+                </li>
+
+                <li>
+                  Cochera para 2 autos
+                </li>
+
+                <li>
+                  Recámara con baño completo y clóset
+                </li>
+
+                <li>
+                  Sala comedor amplia
+                </li>
+
+                <li>
+                  Cocina integral con isla, alacena y torre de hornos
+                </li>
+
+                <li>
+                  Baño de visitas
+                </li>
+
+                <li>
+                  Jardín
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- PRIMER NIVEL -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                02
+              </span>
+
+              <h3>
+                Primer nivel
+              </h3>
+
+              <ul>
+
+                <li>
+                  Sala de TV
+                </li>
+
+                <li>
+                  Recámara principal con vestidor y baño completo con tina
+                </li>
+
+                <li>
+                  2 recámaras secundarias con clóset y baño completo cada una
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- SEGUNDO NIVEL -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                03
+              </span>
+
+              <h3>
+                Segundo nivel
+              </h3>
+
+              <ul>
+
+                <li>
+                  Roof garden
+                </li>
+
+                <li>
+                  Baño completo
+                </li>
+
+                <li>
+                  Cuarto de lavado
+                </li>
+
+                <li>
+                  Área de tendido
+                </li>
+
+                <li>
+                  Terraza
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- DETALLES DESTACADOS -->
+
+            <article class="distribution-card amenities-card">
+
+              <span class="level-number">
+                04
+              </span>
+
+              <h3>
+                Espacios destacados
+              </h3>
+
+              <ul>
+
+                <li>
+                  Recámara con baño completo en planta baja
+                </li>
+
+                <li>
+                  Cocina integral con isla
+                </li>
+
+                <li>
+                  Recámara principal con vestidor y tina
+                </li>
+
+                <li>
+                  Roof garden
+                </li>
+
+                <li>
+                  Terraza
+                </li>
+
+              </ul>
+
+            </article>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             DESCRIPCIÓN BLVD. DE LOS REYES ID 6
+        ================================================== -->
+
+        <section
+          class="description-block"
+          *ngIf="property.id === 6"
+        >
+
+          <span class="section-eyebrow">
+            La residencia
+          </span>
+
+          <h2>
+            Espacios amplios y doble roof garden
+          </h2>
+
+          <p>
+            Casa en venta en Blvd. de los Reyes, Atlixcáyotl,
+            con 136 m² de terreno y 260 m² de construcción.
+          </p>
+
+          <p>
+            El primer nivel integra sala, comedor, cocina integral
+            con isla, jardín, medio baño, área de lavado y cuarto
+            de máquinas equipado con suavizador, calentador e
+            hidroneumático.
+          </p>
+
+          <p>
+            En el segundo nivel se encuentra la recámara principal
+            con doble vestidor y baño completo, además de dos
+            recámaras secundarias con clóset que comparten baño.
+          </p>
+
+          <p>
+            El nivel de roof garden cuenta con sala de TV o salón,
+            dos roof gardens, medio baño y cuarto de servicio con
+            baño completo. El residencial complementa la propiedad
+            con áreas verdes y caseta con vigilancia 24/7.
+          </p>
+
+        </section>
+
+
+        <!-- =================================================
+             DISTRIBUCIÓN BLVD. DE LOS REYES ID 6
+        ================================================== -->
+
+        <section
+          class="distribution-section"
+          *ngIf="property.id === 6"
+        >
+
+          <div class="distribution-heading">
+
+            <span class="section-eyebrow">
+              Distribución
+            </span>
+
+            <h2>
+              Distribución por niveles
+            </h2>
+
+          </div>
+
+
+          <div class="distribution-grid">
+
+
+            <!-- PRIMER NIVEL -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                01
+              </span>
+
+              <h3>
+                Primer nivel
+              </h3>
+
+              <ul>
+
+                <li>
+                  Sala
+                </li>
+
+                <li>
+                  Comedor
+                </li>
+
+                <li>
+                  Cocina integral con isla
+                </li>
+
+                <li>
+                  Jardín
+                </li>
+
+                <li>
+                  Medio baño
+                </li>
+
+                <li>
+                  Área de lavado
+                </li>
+
+                <li>
+                  Cuarto de máquinas con suavizador,
+                  calentador e hidroneumático
+                </li>
+
+                <li>
+                  2 lugares de estacionamiento
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- SEGUNDO NIVEL -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                02
+              </span>
+
+              <h3>
+                Segundo nivel
+              </h3>
+
+              <ul>
+
+                <li>
+                  Recámara principal con doble vestidor y baño completo
+                </li>
+
+                <li>
+                  2 recámaras secundarias con clóset
+                </li>
+
+                <li>
+                  Baño compartido para recámaras secundarias
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- ROOF GARDEN -->
+
+            <article class="distribution-card">
+
+              <span class="level-number">
+                03
+              </span>
+
+              <h3>
+                Roof garden
+              </h3>
+
+              <ul>
+
+                <li>
+                  Sala de TV / salón
+                </li>
+
+                <li>
+                  2 roof gardens
+                </li>
+
+                <li>
+                  Medio baño
+                </li>
+
+                <li>
+                  Cuarto de servicio con baño completo
+                </li>
+
+              </ul>
+
+            </article>
+
+
+            <!-- AMENIDADES -->
+
+            <article class="distribution-card amenities-card">
+
+              <span class="level-number">
+                04
+              </span>
+
+              <h3>
+                Amenidades
+              </h3>
+
+              <ul>
+
+                <li>
+                  Áreas verdes
+                </li>
+
+                <li>
+                  Caseta con vigilancia 24/7
+                </li>
+
+              </ul>
+
+            </article>
+
+          </div>
+
+        </section>
+
+        <!-- =================================================
+             DESCRIPCIÓN GENERAL
+             PARA LAS DEMÁS PROPIEDADES
+        ================================================== -->
+
+        <section
+          class="description-block"
+          *ngIf="property.id !== 1 && property.id !== 2 && property.id !== 3 && property.id !== 4 && property.id !== 5 && property.id !== 6"
+        >
+
+          <span class="section-eyebrow">
+            La propiedad
+          </span>
+
+          <h2>
+            Descripción
+          </h2>
+
+          <p>
+            {{ property.description }}
+          </p>
+
+        </section>
+
+
+        <!-- =================================================
+             CARACTERÍSTICAS GENERALES
+        ================================================== -->
+
+        <section
+          class="features-block"
+          *ngIf="property.id !== 1 && property.id !== 2 && property.id !== 3 && property.id !== 4 && property.id !== 5 && property.id !== 6"
+        >
+
+          <h2>
+            Características
+          </h2>
+
+          <ul>
+
+            <li
+              *ngFor="
+                let feature of property.features
+              "
+            >
+              {{ feature }}
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+      <!-- ===================================================
+           CONTACTO
+      ==================================================== -->
+
+      <aside class="contact-card">
+
+        <span class="contact-eyebrow">
+          ¿Te interesa esta propiedad?
+        </span>
+
+        <h3>
+          Agenda una visita personalizada
+        </h3>
+
+        <p>
+          Recibe información, disponibilidad
+          y acompañamiento de un asesor.
+        </p>
+
+
+        <div class="contact-actions">
+
+
+          <!-- WHATSAPP -->
+
+          <a
+            [href]="whatsapp"
+            target="_blank"
+            rel="noopener"
+            class="contact-button primary"
+          >
+            Contactar por WhatsApp
+          </a>
+
+
+          <!-- CONTACTO -->
+
+          <a
+            routerLink="/contacto"
+            class="contact-button secondary"
+          >
+            Dejar mis datos
+          </a>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+  </div>
+
+</section>

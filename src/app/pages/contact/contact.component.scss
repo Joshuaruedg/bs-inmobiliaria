@@ -1,1 +1,574 @@
-.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:34px;padding:70px 6%;background:linear-gradient(135deg,#062b5f,#021b3f);color:white;min-height:70vh}h1{font-size:48px;margin:0}p{font-size:18px;opacity:.85}a,button{display:inline-block;background:#0aa6d6;color:white;border:0;padding:15px 20px;border-radius:16px;font-weight:900;margin:8px 8px 0 0}.outline{background:transparent;border:2px solid white}form{background:white;border-radius:30px;padding:28px;display:grid;gap:14px}input,select,textarea{padding:15px;border:1px solid #d7e5ee;border-radius:14px;font:inherit}textarea{min-height:120px}button{cursor:pointer}@media(max-width:800px){.contact{grid-template-columns:1fr}}
+:host {
+  display: block;
+  background: #f6f5f1;
+  color: var(--bs-navy);
+}
+
+.contact-container {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: var(--bs-cyan);
+  font-family: var(--font-body);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+}
+
+.eyebrow.light {
+  color: #88d8e2;
+}
+
+
+/* =========================================================
+   HERO CON FOTO
+========================================================= */
+
+.contact-hero {
+  position: relative;
+  min-height: 670px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+
+  background-image:
+    url('/images/contacto/contacto-hero.jpg');
+
+  background-size: cover;
+  background-position: center 52%;
+  background-repeat: no-repeat;
+}
+
+.contact-hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 23, 40, .93) 0%,
+      rgba(3, 23, 40, .78) 38%,
+      rgba(3, 23, 40, .40) 68%,
+      rgba(3, 23, 40, .20) 100%
+    );
+}
+
+.contact-hero-content {
+  position: relative;
+  z-index: 2;
+  padding-top: 140px;
+  padding-bottom: 82px;
+  color: #ffffff;
+}
+
+.hero-navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 32px;
+
+  width: 100%;
+
+  margin: 0 0 34px;
+  padding: 0;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 12px;
+
+  width: max-content;
+
+  margin: 0;
+  padding: 0;
+
+  color: rgba(255, 255, 255, .82);
+
+  font-family: var(--font-body);
+  font-size: .68rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .11em;
+
+  text-decoration: none;
+  text-transform: uppercase;
+
+  transition:
+    gap .25s ease,
+    color .25s ease;
+}
+
+.back-link:hover {
+  gap: 18px;
+  color: #ffffff;
+}
+
+.hero-navigation .hero-eyebrow {
+  display: block;
+
+  width: max-content;
+
+  margin: 0;
+  padding: 0;
+
+  color: #88d8e2;
+
+  font-family: var(--font-body);
+  font-size: .68rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+}
+
+.contact-hero h1 {
+  max-width: 900px;
+  margin: 0;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 6vw, 6.7rem);
+  font-weight: 400;
+  line-height: .93;
+  letter-spacing: -.035em;
+}
+
+.contact-hero p {
+  max-width: 650px;
+  margin: 30px 0 0;
+  color: rgba(255, 255, 255, .78);
+  font-family: var(--font-body);
+  font-size: .98rem;
+  line-height: 1.9;
+}
+
+
+/* =========================================================
+   CONTENIDO
+========================================================= */
+
+.contact-main {
+  padding: 110px 0 125px;
+  background: #ffffff;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: .82fr 1.18fr;
+  gap: 105px;
+  align-items: start;
+}
+
+
+/* =========================================================
+   INFORMACIÓN
+========================================================= */
+
+.contact-info {
+  padding-top: 24px;
+}
+
+.contact-info h2 {
+  max-width: 500px;
+  margin: 0;
+  color: var(--bs-navy);
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 4vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -.025em;
+}
+
+.contact-intro {
+  max-width: 510px;
+  margin: 28px 0 48px;
+  color: var(--bs-muted);
+  font-family: var(--font-body);
+  font-size: .92rem;
+  line-height: 1.85;
+}
+
+.contact-details {
+  border-top: 1px solid rgba(11, 47, 79, .14);
+}
+
+.contact-details article {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 18px;
+  padding: 25px 0;
+  border-bottom: 1px solid rgba(11, 47, 79, .14);
+}
+
+.detail-number {
+  padding-top: 3px;
+  color: var(--bs-cyan);
+  font-family: var(--font-body);
+  font-size: .64rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+}
+
+.contact-details small {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--bs-muted);
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+}
+
+.contact-details strong,
+.contact-details a {
+  color: var(--bs-navy);
+  font-family: var(--font-body);
+  font-size: .94rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.contact-details a {
+  transition: color .2s ease;
+}
+
+.contact-details a:hover {
+  color: var(--bs-cyan);
+}
+
+.contact-note {
+  margin-top: 42px;
+  padding: 27px 30px;
+  border-left: 2px solid var(--bs-cyan);
+  background: #f4f7f7;
+}
+
+.contact-note span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--bs-navy);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+
+.contact-note p {
+  margin: 0;
+  color: var(--bs-muted);
+  font-size: .84rem;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   FORMULARIO
+========================================================= */
+
+.form-panel {
+  position: relative;
+  padding: 50px 52px 48px;
+  overflow: hidden;
+  border: 1px solid rgba(11, 47, 79, .12);
+  border-radius: 3px;
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff 0%,
+      #f8faf9 100%
+    );
+  box-shadow: 0 30px 80px rgba(7, 35, 56, .10);
+}
+
+.form-panel::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background:
+    linear-gradient(
+      90deg,
+      var(--bs-cyan),
+      transparent 74%
+    );
+  content: '';
+}
+
+.form-heading {
+  margin-bottom: 38px;
+}
+
+.form-heading > span {
+  display: block;
+  margin-bottom: 11px;
+  color: var(--bs-cyan);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .17em;
+}
+
+.form-heading h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 2.7rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.form-heading p {
+  max-width: 520px;
+  margin: 16px 0 0;
+  color: var(--bs-muted);
+  font-size: .86rem;
+  line-height: 1.7;
+}
+
+.contact-form {
+  display: grid;
+  gap: 22px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.field {
+  display: grid;
+  gap: 9px;
+}
+
+.field > span {
+  color: var(--bs-navy);
+  font-family: var(--font-body);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(11, 47, 79, .15);
+  border-radius: 2px;
+  outline: none;
+  background: rgba(244, 248, 249, .78);
+  color: var(--bs-navy);
+  font-family: var(--font-body);
+  font-size: .86rem;
+  transition:
+    border-color .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
+}
+
+.field input,
+.field select {
+  height: 54px;
+  padding: 0 17px;
+}
+
+.field textarea {
+  min-height: 130px;
+  padding: 16px 17px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: rgba(65, 78, 89, .58);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: rgba(25, 157, 177, .72);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(25, 157, 177, .08);
+}
+
+
+/* =========================================================
+   BOTÓN WHATSAPP
+========================================================= */
+
+.whatsapp-button {
+  width: 100%;
+  min-height: 74px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 18px;
+  align-items: center;
+  margin-top: 6px;
+  padding: 14px 20px;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+  background: var(--bs-navy);
+  color: #ffffff;
+  text-align: left;
+  box-shadow: 0 14px 32px rgba(5, 35, 58, .16);
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
+}
+
+.whatsapp-button:hover {
+  transform: translateY(-2px);
+  background: #0d4166;
+  box-shadow: 0 19px 38px rgba(5, 35, 58, .22);
+}
+
+.whatsapp-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .07);
+}
+
+.whatsapp-icon svg {
+  width: 23px;
+  height: 23px;
+  fill: #75d5df;
+}
+
+.button-copy {
+  display: grid;
+  gap: 4px;
+}
+
+.button-copy strong {
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.button-copy small {
+  color: rgba(255, 255, 255, .65);
+  font-size: .68rem;
+}
+
+.button-arrow {
+  font-size: 1.45rem;
+  transition: transform .2s ease;
+}
+
+.whatsapp-button:hover .button-arrow {
+  transform: translateX(4px);
+}
+
+.form-legal {
+  margin: -5px 0 0;
+  color: var(--bs-muted);
+  font-size: .68rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+
+/* =========================================================
+   CIERRE
+========================================================= */
+
+.contact-close {
+  padding: 88px 0;
+  background: var(--bs-navy);
+  color: #ffffff;
+}
+
+.close-grid {
+  display: grid;
+  grid-template-columns: 1fr .65fr;
+  gap: 90px;
+  align-items: end;
+}
+
+.close-grid h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 4.6vw, 5rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.close-grid p {
+  max-width: 470px;
+  margin: 0;
+  color: rgba(255, 255, 255, .68);
+  font-size: .9rem;
+  line-height: 1.85;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 980px) {
+
+  .contact-grid,
+  .close-grid {
+    grid-template-columns: 1fr;
+    gap: 55px;
+  }
+
+  .contact-hero {
+    min-height: 620px;
+  }
+
+}
+
+@media (max-width: 700px) {
+
+  .contact-container {
+    width: calc(100% - 28px);
+  }
+
+  .contact-hero {
+    min-height: 650px;
+    background-position: 58% center;
+  }
+
+  .contact-hero-content {
+    padding-top: 120px;
+    padding-bottom: 60px;
+  }
+
+  .contact-hero h1 {
+    font-size: 3.55rem;
+  }
+
+  .contact-main {
+    padding: 80px 0 90px;
+  }
+
+  .form-panel {
+    padding: 34px 22px 28px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-close {
+    padding: 75px 0;
+  }
+
+}

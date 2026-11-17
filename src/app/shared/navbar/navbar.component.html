@@ -1,10 +1,480 @@
-<header class="navbar">
-  <a routerLink="/" class="brand"><img src="logo-bs.png" alt="BS Inmobiliaria"></a>
-  <nav>
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
-    <a routerLink="/propiedades" routerLinkActive="active">Propiedades</a>
-    <a routerLink="/servicios" routerLinkActive="active">Servicios</a>
-    <a routerLink="/contacto" routerLinkActive="active">Contacto</a>
-  </nav>
-  <a class="whatsapp" href="https://wa.me/522221059393" target="_blank">WhatsApp</a>
+<header
+  class="nav-shell"
+  [class.scrolled]="scrolled"
+  [class.panel-open]="menuOpen"
+>
+
+  <div class="nav-inner">
+
+    <!-- LOGO -->
+
+    <a
+      routerLink="/"
+      class="brand"
+      aria-label="Ir al inicio de BS Inmobiliaria"
+      (click)="closeMenu()"
+    >
+
+      <span
+        class="brand-mark"
+        aria-hidden="true"
+      >
+
+        <img
+          src="images/logo-bs-transparente.png"
+          alt=""
+        >
+
+      </span>
+
+      <span class="brand-copy">
+
+        <strong>
+          BS
+        </strong>
+
+        <small>
+          INMOBILIARIA
+        </small>
+
+      </span>
+
+    </a>
+
+
+    <!-- NAVEGACIÓN -->
+
+    <nav
+      class="desktop-nav"
+      aria-label="Navegación principal"
+    >
+
+
+      <!-- PROPIEDADES -->
+
+      <div class="nav-group">
+
+        <a routerLink="/propiedades">
+
+          Propiedades
+
+          <span class="chevron">
+            ⌄
+          </span>
+
+        </a>
+
+
+        <div class="dropdown">
+
+          <a routerLink="/propiedades">
+            Todas las propiedades
+          </a>
+
+          <a
+            routerLink="/propiedades"
+            [queryParams]="{
+              operacion: 'venta'
+            }"
+          >
+            Propiedades en venta
+          </a>
+
+          <a
+            routerLink="/propiedades"
+            [queryParams]="{
+              operacion: 'renta'
+            }"
+          >
+            Propiedades en renta
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- DESCUBRIR -->
+
+      <div class="nav-group">
+
+        <a routerLink="/descubrir">
+
+          Descubrir
+
+          <span class="chevron">
+            ⌄
+          </span>
+
+        </a>
+
+        <div class="dropdown">
+
+          <a routerLink="/descubrir/vivir-en-puebla">
+            Vivir en Puebla
+          </a>
+
+          <a routerLink="/descubrir/zonas-destacadas">
+            Zonas destacadas
+          </a>
+
+          <a routerLink="/descubrir/guia-compradores">
+            Guía para compradores
+          </a>
+
+          <a routerLink="/descubrir/inversion-inmobiliaria">
+            Inversión inmobiliaria
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- NOSOTROS -->
+
+      <div class="nav-group">
+
+        <a
+          routerLink="/"
+          fragment="nosotros"
+        >
+
+          Sobre nosotros
+
+          <span class="chevron">
+            ⌄
+          </span>
+
+        </a>
+
+        <div class="dropdown">
+
+          <a
+            routerLink="/"
+            fragment="nosotros"
+          >
+            BS Inmobiliaria
+          </a>
+
+          <a
+            routerLink="/"
+            fragment="vende"
+          >
+            Vende con nosotros
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <a
+        routerLink="/servicios"
+        routerLinkActive="active"
+      >
+        Servicios
+      </a>
+
+
+      <a
+        routerLink="/contacto"
+        routerLinkActive="active"
+      >
+        Contáctenos
+      </a>
+
+
+      <a
+        routerLink="/propiedades"
+        class="search-link"
+        aria-label="Buscar propiedades"
+      >
+
+        <span
+          class="search-icon"
+          aria-hidden="true"
+        ></span>
+
+      </a>
+
+    </nav>
+
+
+    <!-- MENÚ -->
+
+    <button
+      class="menu-toggle"
+      [class.active]="menuOpen"
+      type="button"
+      aria-label="Abrir menú"
+      [attr.aria-expanded]="menuOpen"
+      (click)="toggleMenu()"
+    >
+
+      <span class="menu-word">
+        Menú
+      </span>
+
+      <span
+        class="hamburger"
+        aria-hidden="true"
+      >
+        <i></i>
+        <i></i>
+        <i></i>
+      </span>
+
+    </button>
+
+  </div>
+
 </header>
+
+
+<!-- FONDO -->
+
+<div
+  class="menu-backdrop"
+  [class.open]="menuOpen"
+  (click)="closeMenu()"
+></div>
+
+
+<!-- PANEL -->
+
+<aside
+  class="menu-panel"
+  [class.open]="menuOpen"
+  aria-label="Menú ampliado"
+>
+
+
+  <div class="panel-head">
+
+    <span>
+      BS Inmobiliaria
+    </span>
+
+    <button
+      type="button"
+      aria-label="Cerrar menú"
+      (click)="closeMenu()"
+    >
+      ×
+    </button>
+
+  </div>
+
+
+  <div class="panel-body">
+
+
+    <!-- PRINCIPAL -->
+
+    <nav class="panel-nav">
+
+      <a
+        routerLink="/"
+        (click)="closeMenu()"
+      >
+        <span>Inicio</span>
+        <small>01</small>
+      </a>
+
+      <a
+        routerLink="/propiedades"
+        (click)="closeMenu()"
+      >
+        <span>Propiedades</span>
+        <small>02</small>
+      </a>
+
+      <a
+        routerLink="/servicios"
+        (click)="closeMenu()"
+      >
+        <span>Servicios</span>
+        <small>03</small>
+      </a>
+
+      <a
+        routerLink="/contacto"
+        (click)="closeMenu()"
+      >
+        <span>Contacto</span>
+        <small>04</small>
+      </a>
+
+    </nav>
+
+
+    <!-- PROPIEDADES -->
+
+    <section class="panel-section">
+
+      <span class="panel-label">
+        Propiedades
+      </span>
+
+      <div class="panel-links">
+
+        <a
+          routerLink="/propiedades"
+          (click)="closeMenu()"
+        >
+          Todas las propiedades
+        </a>
+
+        <a
+          routerLink="/propiedades"
+          [queryParams]="{
+            operacion: 'venta'
+          }"
+          (click)="closeMenu()"
+        >
+          En venta
+        </a>
+
+        <a
+          routerLink="/propiedades"
+          [queryParams]="{
+            operacion: 'renta'
+          }"
+          (click)="closeMenu()"
+        >
+          En renta
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- DESCUBRIR -->
+
+    <section class="panel-section">
+
+      <span class="panel-label">
+        Descubrir
+      </span>
+
+      <div class="panel-links">
+
+        <a
+          routerLink="/descubrir/vivir-en-puebla"
+          (click)="closeMenu()"
+        >
+          Vivir en Puebla
+        </a>
+
+        <a
+          routerLink="/descubrir/zonas-destacadas"
+          (click)="closeMenu()"
+        >
+          Zonas destacadas
+        </a>
+
+        <a
+          routerLink="/descubrir/guia-compradores"
+          (click)="closeMenu()"
+        >
+          Guía para compradores
+        </a>
+
+        <a
+          routerLink="/descubrir/inversion-inmobiliaria"
+          (click)="closeMenu()"
+        >
+          Inversión inmobiliaria
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- PREFERENCIAS -->
+
+    <section
+      class="panel-section preferences"
+    >
+
+      <span class="panel-label">
+        Preferencias
+      </span>
+
+      <div class="preference-row">
+
+        <span>
+          Idioma
+        </span>
+
+        <strong>
+          Español
+        </strong>
+
+        <i>
+          +
+        </i>
+
+      </div>
+
+
+      <div class="preference-row">
+
+        <span>
+          Moneda
+        </span>
+
+        <strong>
+          MXN
+        </strong>
+
+        <i>
+          +
+        </i>
+
+      </div>
+
+
+      <div class="preference-row">
+
+        <span>
+          Unidad de medida
+        </span>
+
+        <strong>
+          Métrico
+        </strong>
+
+        <i>
+          +
+        </i>
+
+      </div>
+
+    </section>
+
+  </div>
+
+
+  <!-- FOOTER PANEL -->
+
+  <div class="panel-footer">
+
+    <span>
+      Puebla · Cholula · Lomas de Angelópolis
+    </span>
+
+    <a
+      href="https://wa.me/522221673601"
+      target="_blank"
+      rel="noopener"
+    >
+      WhatsApp · 222 167 3601
+    </a>
+
+  </div>
+
+</aside>

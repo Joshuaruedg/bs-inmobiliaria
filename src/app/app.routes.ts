@@ -1,15 +1,78 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { PropertiesComponent } from './pages/properties/properties.component';
-import { PropertyDetailComponent } from './pages/property-detail/property-detail.component';
-import { ServicesComponent } from './pages/services/services.component';
-import { ContactComponent } from './pages/contact/contact.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'propiedades', component: PropertiesComponent },
-  { path: 'propiedades/:id', component: PropertyDetailComponent },
-  { path: 'servicios', component: ServicesComponent },
-  { path: 'contacto', component: ContactComponent },
-  { path: '**', redirectTo: '' }
+  {
+    path: '',
+    loadComponent: () =>
+      import('./pages/home/home.component')
+        .then(m => m.HomeComponent)
+  },
+
+  {
+    path: 'propiedades',
+    loadComponent: () =>
+      import('./pages/properties/properties.component')
+        .then(m => m.PropertiesComponent)
+  },
+
+  {
+    path: 'propiedades/:slug',
+    loadComponent: () =>
+      import('./pages/property-detail/property-detail.component')
+        .then(m => m.PropertyDetailComponent)
+  },
+
+  {
+    path: 'descubrir',
+    loadComponent: () =>
+      import('./pages/discover/discover.component')
+        .then(m => m.DiscoverComponent)
+  },
+
+  {
+    path: 'descubrir/vivir-en-puebla',
+    loadComponent: () =>
+      import('./pages/discover/vivir-puebla/vivir-puebla.component')
+        .then(m => m.VivirPueblaComponent)
+  },
+
+  {
+    path: 'descubrir/zonas-destacadas',
+    loadComponent: () =>
+      import('./pages/discover/zonas-destacadas/zonas-destacadas.component')
+        .then(m => m.ZonasDestacadasComponent)
+  },
+
+  {
+    path: 'descubrir/guia-compradores',
+    loadComponent: () =>
+      import('./pages/discover/guia-compradores/guia-compradores.component')
+        .then(m => m.GuiaCompradoresComponent)
+  },
+
+  {
+    path: 'descubrir/inversion-inmobiliaria',
+    loadComponent: () =>
+      import('./pages/discover/inversion-inmobiliaria/inversion-inmobiliaria.component')
+        .then(m => m.InversionInmobiliariaComponent)
+  },
+
+  {
+    path: 'servicios',
+    loadComponent: () =>
+      import('./pages/services/services.component')
+        .then(m => m.ServicesComponent)
+  },
+
+  {
+    path: 'contacto',
+    loadComponent: () =>
+      import('./pages/contact/contact.component')
+        .then(m => m.ContactComponent)
+  },
+
+  {
+    path: '**',
+    redirectTo: ''
+  }
 ];

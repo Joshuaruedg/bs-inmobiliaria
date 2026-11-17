@@ -1,0 +1,536 @@
+:host {
+  display: block;
+  background: #f6f4ef;
+  color: var(--bs-navy);
+}
+
+.zones-container {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.eyebrow {
+  display: inline-block;
+
+  margin-bottom: 18px;
+
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  color: var(--bs-cyan);
+}
+
+.eyebrow.light {
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.zones-hero {
+  position: relative;
+
+  min-height: 82vh;
+
+  display: flex;
+  align-items: flex-end;
+
+  overflow: hidden;
+
+  background: var(--bs-navy);
+}
+
+.zones-hero-image {
+  position: absolute;
+  inset: 0;
+}
+
+.zones-hero-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.zones-hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(4, 23, 39, 0.9) 0%,
+      rgba(4, 23, 39, 0.6) 48%,
+      rgba(4, 23, 39, 0.18) 100%
+    );
+}
+
+.zones-hero-content {
+  position: relative;
+  z-index: 2;
+
+  padding-top: 160px;
+  padding-bottom: 90px;
+
+  color: #ffffff;
+}
+
+.back-link {
+  display: block;
+
+  width: max-content;
+
+  margin-bottom: 65px;
+
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: #ffffff;
+}
+
+.zones-hero h1 {
+  max-width: 880px;
+
+  margin: 0;
+
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 7vw, 7.2rem);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+
+.zones-hero p {
+  max-width: 620px;
+
+  margin: 34px 0 0;
+
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.9;
+
+  color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.zones-intro {
+  padding: 125px 0;
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 100px;
+
+  align-items: start;
+}
+
+.intro-grid h2 {
+  margin: 0;
+
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5vw, 5.2rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.intro-copy {
+  padding-top: 50px;
+}
+
+.intro-copy p {
+  margin: 0 0 24px;
+
+  font-family: var(--font-body);
+  font-size: 0.96rem;
+  line-height: 1.9;
+
+  color: var(--bs-muted);
+}
+
+
+/* =========================================================
+   ZONA DESTACADA
+========================================================= */
+
+.zone-feature {
+  padding: 120px 0;
+}
+
+.zone-feature-light {
+  background: #ffffff;
+}
+
+.zone-feature-dark {
+  background: var(--bs-navy);
+  color: #ffffff;
+}
+
+.zone-feature-soft {
+  background: #eeece6;
+}
+
+.zone-feature-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 95px;
+
+  align-items: center;
+}
+
+.zone-feature-grid.reverse {
+  grid-template-columns: 0.95fr 1.05fr;
+}
+
+.zone-feature-grid.reverse .zone-image {
+  order: 2;
+}
+
+.zone-feature-grid.reverse .zone-copy {
+  order: 1;
+}
+
+.zone-image {
+  min-height: 600px;
+
+  overflow: hidden;
+}
+
+.zone-image img {
+  width: 100%;
+  height: 600px;
+
+  object-fit: cover;
+
+  transition: transform 0.7s ease;
+}
+
+.zone-image:hover img {
+  transform: scale(1.025);
+}
+
+.zone-copy {
+  max-width: 500px;
+}
+
+.zone-number {
+  display: block;
+
+  margin-bottom: 60px;
+
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+
+  color: var(--bs-cyan);
+}
+
+.zone-copy h2 {
+  margin: 0 0 28px;
+
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 4.5vw, 5rem);
+  font-weight: 400;
+  line-height: 0.98;
+}
+
+.zone-copy > p {
+  margin: 0;
+
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  line-height: 1.9;
+
+  color: var(--bs-muted);
+}
+
+.zone-feature-dark .zone-copy > p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.zone-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin-top: 32px;
+}
+
+.zone-points span {
+  padding: 9px 14px;
+
+  border: 1px solid rgba(11, 47, 79, 0.18);
+
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.zone-feature-dark .zone-points span {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.zone-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+
+  margin-top: 40px;
+  padding-bottom: 8px;
+
+  border-bottom: 1px solid rgba(11, 47, 79, 0.5);
+
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: var(--bs-navy);
+  text-decoration: none;
+
+  transition: gap 0.25s ease;
+}
+
+.zone-link.light {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.zone-link:hover {
+  gap: 26px;
+}
+
+
+/* =========================================================
+   CÓMO ELEGIR
+========================================================= */
+
+.choose-section {
+  padding: 125px 0;
+
+  background: #0b2f4f;
+  color: #ffffff;
+}
+
+.choose-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 120px;
+}
+
+.choose-grid h2 {
+  margin: 0;
+
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 4.5vw, 5rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.choose-list {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.choose-list article {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 25px;
+
+  padding: 34px 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.choose-list article > span {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 700;
+
+  color: var(--bs-cyan);
+}
+
+.choose-list h3 {
+  margin: -6px 0 10px;
+
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 400;
+}
+
+.choose-list p {
+  margin: 0;
+
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  line-height: 1.8;
+
+  color: rgba(255, 255, 255, 0.68);
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.zones-cta {
+  padding: 110px 0;
+
+  background: #ffffff;
+}
+
+.cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.75fr;
+  gap: 100px;
+
+  align-items: center;
+}
+
+.cta-grid h2 {
+  margin: 0;
+
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 4.5vw, 5rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.cta-grid p {
+  margin: 0 0 28px;
+
+  font-family: var(--font-body);
+  font-size: 0.93rem;
+  line-height: 1.85;
+
+  color: var(--bs-muted);
+}
+
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+
+  padding-bottom: 8px;
+
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: var(--bs-navy);
+  text-decoration: none;
+
+  border-bottom: 1px solid rgba(11, 47, 79, 0.45);
+
+  transition: gap 0.25s ease;
+}
+
+.cta-link:hover {
+  gap: 28px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 980px) {
+
+  .zones-container {
+    width: calc(100% - 36px);
+  }
+
+  .intro-grid,
+  .zone-feature-grid,
+  .zone-feature-grid.reverse,
+  .choose-grid,
+  .cta-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .zone-feature-grid.reverse .zone-image,
+  .zone-feature-grid.reverse .zone-copy {
+    order: initial;
+  }
+
+  .intro-copy {
+    padding-top: 0;
+  }
+
+  .zone-image,
+  .zone-image img {
+    min-height: 500px;
+    height: 500px;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .zones-container {
+    width: calc(100% - 28px);
+  }
+
+  .zones-hero {
+    min-height: 680px;
+  }
+
+  .zones-hero-content {
+    padding-top: 130px;
+    padding-bottom: 60px;
+  }
+
+  .back-link {
+    margin-bottom: 45px;
+  }
+
+  .zones-hero h1 {
+    font-size: 3.7rem;
+  }
+
+  .zones-intro,
+  .zone-feature,
+  .choose-section,
+  .zones-cta {
+    padding-top: 85px;
+    padding-bottom: 90px;
+  }
+
+  .zone-image,
+  .zone-image img {
+    min-height: 390px;
+    height: 390px;
+  }
+
+  .zone-number {
+    margin-bottom: 35px;
+  }
+
+  .choose-list article {
+    grid-template-columns: 45px 1fr;
+  }
+
+}

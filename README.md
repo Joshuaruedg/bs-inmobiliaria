@@ -1,38 +1,36 @@
-# BS Inmobiliaria Demo Angular
+# BS Inmobiliaria Premium v2
 
-Proyecto demo listo para mostrar y empezar a cargar propiedades.
+Proyecto Angular listo para desarrollo, GitHub y Vercel.
 
-## Correr local
+## Ejecutar localmente
 
-```bash
+```powershell
 npm install
 npm start
 ```
 
-Abre: http://localhost:4200
+Abre `http://localhost:4200`.
 
-## Dónde cargar casas
+## Agregar o quitar propiedades
 
 Edita:
 
-```txt
-src/app/data/properties.ts
+`src/app/data/properties.ts`
+
+Guarda con `Ctrl + S`; Angular actualizará el navegador automáticamente.
+
+## Publicar cambios
+
+```powershell
+git add .
+git commit -m "Descripción del cambio"
+git push
 ```
 
-## Dónde poner fotos
+Vercel publicará el cambio automáticamente.
 
-Coloca las fotos en:
+## Fotografías
 
-```txt
-public/properties/casa-1/principal.jpg
-```
+Guárdalas dentro de `public/properties/` y usa rutas como:
 
-Y referencia la ruta en `properties.ts`.
-
-## Logo
-
-El logo está en:
-
-```txt
-public/logo-bs.png
-```
+`properties/casa-nueva/principal.jpg`

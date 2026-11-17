@@ -1,1 +1,370 @@
-<section class="page-head"><h1>Propiedades disponibles</h1><p>Busca por zona, tipo o nombre de propiedad.</p><input placeholder="Ej. Lomas, Cholula, casa..." [ngModel]="query()" (ngModelChange)="setQuery($event)"></section><section class="grid"><app-property-card *ngFor="let property of properties()" [property]="property" /></section>
+<section class="catalog-hero">
+
+  <!-- VIDEO DE FONDO -->
+
+  <div class="catalog-video">
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      aria-hidden="true"
+    >
+      <source
+        src="/videos/propiedades-hero.mp4"
+        type="video/mp4"
+      >
+    </video>
+  </div>
+
+  <!-- OVERLAY -->
+
+  <div class="catalog-video-overlay"></div>
+
+
+  <!-- CONTENIDO HERO -->
+
+  <div class="properties-container catalog-hero-content">
+
+    <button
+      type="button"
+      class="back-button"
+      (click)="goBack()"
+      aria-label="Volver al inicio"
+    >
+      <span
+        class="back-arrow"
+        aria-hidden="true"
+      >
+        ←
+      </span>
+
+      <span>
+        Volver al inicio
+      </span>
+    </button>
+
+
+    <div class="catalog-heading">
+
+      <span class="catalog-eyebrow">
+        BS INMOBILIARIA · PROPIEDADES
+      </span>
+
+      <h1>
+        Encuentra tu próximo hogar
+        <br>
+        en Puebla
+      </h1>
+
+      <p>
+        Una selección de propiedades en venta y renta
+        en algunas de las zonas con mayor proyección de Puebla.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     CATÁLOGO
+====================================================== -->
+
+<section class="catalog-content">
+
+  <div class="properties-container">
+
+
+    <!-- VENTA / RENTA -->
+
+    <div
+      class="operation-tabs"
+      aria-label="Filtrar por operación"
+    >
+
+      <button
+        type="button"
+        [class.active]="operationFilter === 'todas'"
+        (click)="setOperation('todas')"
+      >
+        Todas
+      </button>
+
+      <button
+        type="button"
+        [class.active]="operationFilter === 'venta'"
+        (click)="setOperation('venta')"
+      >
+        En venta
+      </button>
+
+      <button
+        type="button"
+        [class.active]="operationFilter === 'renta'"
+        (click)="setOperation('renta')"
+      >
+        En renta
+      </button>
+
+    </div>
+
+
+    <!-- FILTROS -->
+
+    <div class="catalog-filters">
+
+
+      <label class="filter-field">
+
+        <span>
+          Zona
+        </span>
+
+        <select
+          [(ngModel)]="zoneFilter"
+        >
+          <option value="todas">
+            Todas las zonas
+          </option>
+
+          <option
+            *ngFor="let zone of zones"
+            [value]="zone"
+          >
+            {{ zone }}
+          </option>
+        </select>
+
+      </label>
+
+
+      <label class="filter-field">
+
+        <span>
+          Tipo de propiedad
+        </span>
+
+        <select
+          [(ngModel)]="typeFilter"
+        >
+          <option value="todos">
+            Todos los tipos
+          </option>
+
+          <option
+            *ngFor="let type of propertyTypes"
+            [value]="type"
+          >
+            {{ type }}
+          </option>
+        </select>
+
+      </label>
+
+
+      <label class="filter-field">
+
+        <span>
+          Precio máximo
+        </span>
+
+        <select
+          [(ngModel)]="maxPrice"
+        >
+          <option
+            *ngFor="let option of priceOptions"
+            [ngValue]="option.value"
+          >
+            {{ option.label }}
+          </option>
+        </select>
+
+      </label>
+
+
+      <button
+        type="button"
+        class="clear-filter"
+        (click)="clearFilters()"
+      >
+        Limpiar filtros
+      </button>
+
+    </div>
+
+
+    <!-- RESULTADOS -->
+
+    <div class="catalog-results-header">
+
+      <div>
+        <span class="results-label">
+          COLECCIÓN
+        </span>
+
+        <h2>
+          {{ filteredProperties.length }}
+
+          {{
+            filteredProperties.length === 1
+              ? 'propiedad'
+              : 'propiedades'
+          }}
+        </h2>
+      </div>
+
+      <p>
+        Propiedades disponibles
+      </p>
+
+    </div>
+
+
+    <!-- GRID -->
+
+    <div
+      class="properties-grid"
+      *ngIf="filteredProperties.length > 0"
+    >
+
+      <article
+        class="property-card"
+        *ngFor="
+          let property of filteredProperties;
+          let i = index
+        "
+      >
+
+        <a
+          class="property-image"
+          [routerLink]="[
+            '/propiedades',
+            property.slug
+          ]"
+        >
+
+          <img
+            [src]="getImage(property, i)"
+            [alt]="property.title"
+            (error)="imageError($event, i)"
+          />
+
+
+          <span
+            class="operation-badge"
+            [class.rent]="getOperation(property) === 'renta'"
+          >
+            {{
+              getOperation(property) === 'renta'
+                ? 'EN RENTA'
+                : 'EN VENTA'
+            }}
+          </span>
+
+        </a>
+
+
+        <div class="property-body">
+
+          <div class="property-location">
+            {{ getZone(property) }}
+          </div>
+
+
+          <a
+            [routerLink]="[
+              '/propiedades',
+              property.slug
+            ]"
+            class="property-title"
+          >
+            {{ property.title }}
+          </a>
+
+
+          <div class="property-features">
+
+            <span>
+              {{ getBedrooms(property) }} rec.
+            </span>
+
+            <span>
+              {{ getBathrooms(property) }} baños
+            </span>
+
+            <span>
+              {{ getConstruction(property) }} m²
+            </span>
+
+          </div>
+
+
+          <div class="property-footer">
+
+            <div class="property-price">
+
+              {{
+                getPrice(property)
+                  | currency:'MXN':'symbol-narrow':'1.0-0'
+              }}
+
+              <small
+                *ngIf="getOperation(property) === 'renta'"
+              >
+                / mes
+              </small>
+
+            </div>
+
+
+            <a
+              [routerLink]="[
+                '/propiedades',
+                property.slug
+              ]"
+              class="view-property"
+            >
+              Ver propiedad
+
+              <span aria-hidden="true">
+                →
+              </span>
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </div>
+
+
+    <!-- SIN RESULTADOS -->
+
+    <div
+      class="empty-results"
+      *ngIf="filteredProperties.length === 0"
+    >
+
+      <span>
+        No encontramos propiedades
+        con estos filtros.
+      </span>
+
+      <button
+        type="button"
+        (click)="clearFilters()"
+      >
+        Ver todas las propiedades
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
