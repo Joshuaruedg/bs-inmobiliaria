@@ -75,11 +75,17 @@ import { RouterLink } from '@angular/router';
               class="brand-link"
               aria-label="Ir al inicio de BS Inmobiliaria"
             >
-              <img
-                src="images/logo-bs-transparente.png"
-                alt="BS Inmobiliaria"
-                class="footer-logo"
-              />
+              <span class="footer-brand-mark" aria-hidden="true">
+                <img
+                  src="images/logo-bs-transparente.png"
+                  alt=""
+                />
+              </span>
+
+              <span class="footer-brand-copy" aria-hidden="true">
+                <strong>BS</strong>
+                <small>INMOBILIARIA</small>
+              </span>
             </a>
 
             <p class="footer-description">
@@ -563,18 +569,52 @@ import { RouterLink } from '@angular/router';
     }
 
 
+    /* Misma composición que el logotipo del navbar */
     .brand-link {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      margin-bottom: 18px;
+      color: #ffffff;
+      text-decoration: none;
     }
 
-
-    .footer-logo {
+    .footer-brand-mark {
+      width: 50px;
+      height: 52px;
+      overflow: hidden;
       display: block;
+      flex: 0 0 50px;
+    }
 
-      width: 178px;
-      height: auto;
+    .footer-brand-mark img {
+      display: block;
+      width: 136px;
+      max-width: none;
+      height: 54px;
+      object-fit: contain;
+      object-position: left center;
+      transform: translateX(-1px);
+    }
 
-      margin-bottom: 18px;
+    .footer-brand-copy {
+      display: grid;
+      line-height: 1;
+    }
+
+    .footer-brand-copy strong {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 500;
+      letter-spacing: -.03em;
+    }
+
+    .footer-brand-copy small {
+      margin-top: 2px;
+      font-size: .55rem;
+      font-weight: 600;
+      letter-spacing: .17em;
     }
 
 
@@ -873,8 +913,23 @@ import { RouterLink } from '@angular/router';
       }
 
 
-      .footer-logo {
-        width: 158px;
+      .footer-brand-mark {
+        width: 45px;
+        height: 48px;
+        flex-basis: 45px;
+      }
+
+      .footer-brand-mark img {
+        width: 124px;
+        height: 49px;
+      }
+
+      .footer-brand-copy strong {
+        font-size: 1.75rem;
+      }
+
+      .footer-brand-copy small {
+        font-size: .49rem;
       }
 
 

@@ -1,5 +1,10 @@
+
 import {
-  Component
+  Component,
+  AfterViewInit,
+  OnDestroy,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
 
 import {
@@ -21,8 +26,7 @@ import { PROPERTIES } from '../../data/properties';
 interface FeaturedPropertyView {
   property: Property;
   image: string;
-}
-
+  }
 
 interface Testimonial {
   quote: string;
@@ -52,7 +56,88 @@ interface Testimonial {
 
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements AfterViewInit, OnDestroy {
+
+  /* =======================================================
+     HERO - 3 VIDEOS, 5 SEGUNDOS CADA UNO
+     No altera los filtros ni el carrusel de propiedades.
+  ======================================================= */
+
+  @ViewChild('videoPuebla')
+  private videoPuebla?: ElementRef<HTMLVideoElement>;
+
+  @ViewChild('videoModerno')
+  private videoModerno?: ElementRef<HTMLVideoElement>;
+
+  @ViewChild('videoTercero')
+  private videoTercero?: ElementRef<HTMLVideoElement>;
+
+  activeHeroScene = 0;
+
+  private heroInterval?: ReturnType<typeof setInterval>;
+  private heroPauseTimeout?: ReturnType<typeof setTimeout>;
+
+  ngAfterViewInit(): void {
+    this.playHeroVideo(0);
+
+    this.heroInterval = setInterval(() => {
+      const previousScene = this.activeHeroScene;
+      const nextScene = (previousScene + 1) % 3;
+
+      // Iniciar el video entrante antes del fundido.
+      this.playHeroVideo(nextScene);
+      this.activeHeroScene = nextScene;
+
+      if (this.heroPauseTimeout !== undefined) {
+        clearTimeout(this.heroPauseTimeout);
+      }
+
+      // Mantener el video saliente durante los 1.2 s de transición.
+      this.heroPauseTimeout = setTimeout(() => {
+        this.getHeroVideo(previousScene)?.pause();
+      }, 1200);
+    }, 10000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.heroInterval !== undefined) {
+      clearInterval(this.heroInterval);
+    }
+
+    if (this.heroPauseTimeout !== undefined) {
+      clearTimeout(this.heroPauseTimeout);
+    }
+
+    this.videoPuebla?.nativeElement.pause();
+    this.videoModerno?.nativeElement.pause();
+    this.videoTercero?.nativeElement.pause();
+  }
+
+  private getHeroVideo(index: number): HTMLVideoElement | undefined {
+    if (index === 0) {
+      return this.videoPuebla?.nativeElement;
+    }
+
+    if (index === 1) {
+      return this.videoModerno?.nativeElement;
+    }
+
+    return this.videoTercero?.nativeElement;
+  }
+
+  private playHeroVideo(index: number): void {
+    const video = this.getHeroVideo(index);
+
+    if (!video) return;
+
+    video.muted = true;
+    video.currentTime = 0;
+    video.playbackRate = index === 0 ? 1.20 : 1;
+
+    void video.play().catch(error => {
+      console.error(`Error al reproducir video ${index + 1}:`, error);
+    });
+  }
 
 
   /* =======================================================
@@ -74,7 +159,6 @@ export class HomeComponent {
 
   featuredIndex = 0;
 
-
   /*
    * Toma únicamente las primeras 3 propiedades
    * que tengan:
@@ -84,7 +168,6 @@ export class HomeComponent {
    * en:
    *
    * src/app/data/properties.ts
-   *
    *
    * Las fotografías son independientes
    * del carrusel principal.
@@ -145,7 +228,6 @@ export class HomeComponent {
       ) %
       this.featuredProperties.length;
 
-
     return this.featuredProperties[
       index
     ];
@@ -166,7 +248,6 @@ export class HomeComponent {
         1
       ) %
       this.featuredProperties.length;
-
 
     return this.featuredProperties[
       index
@@ -192,7 +273,6 @@ export class HomeComponent {
         'images/luxury/destino-lomas-clean.jpg'
     },
 
-
     {
       name:
         'Cholula',
@@ -203,7 +283,6 @@ export class HomeComponent {
       image:
         'images/luxury/destino-cholula-clean.jpg'
     },
-
 
     {
       name:
@@ -239,7 +318,6 @@ export class HomeComponent {
         'images/testimonios/testimonio-1.jpg'
     },
 
-
     {
       quote:
         'Me sentí acompañada durante todo el proceso. Siempre tuve claridad, atención y apoyo para tomar cada decisión con tranquilidad. Estoy muy feliz de comenzar esta nueva etapa en mi hogar',
@@ -253,7 +331,6 @@ export class HomeComponent {
       image:
         'images/testimonios/testimonio-2.jpg'
     },
-
 
     {
       quote:
@@ -286,7 +363,6 @@ export class HomeComponent {
 
     }
 
-
     this.featuredIndex =
       (
         this.featuredIndex +
@@ -307,7 +383,6 @@ export class HomeComponent {
 
     }
 
-
     this.featuredIndex =
       (
         this.featuredIndex -
@@ -317,7 +392,5 @@ export class HomeComponent {
       this.featuredProperties.length;
 
   }
-
-
 
 }

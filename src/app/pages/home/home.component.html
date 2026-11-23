@@ -1,3 +1,4 @@
+
 <!-- =====================================================
      HERO PRINCIPAL - VIDEO
 ====================================================== -->
@@ -7,20 +8,60 @@
   aria-label="BS Inmobiliaria"
 >
 
+  <!-- VIDEO 1: PUEBLA DESDE EL AIRE (4K) - 5 SEGUNDOS -->
   <video
+    #videoPuebla
     class="hero-video"
     autoplay
-    muted
-    loop
+    [muted]="true"
     playsinline
-    preload="metadata"
+    preload="auto"
+    [style.opacity]="activeHeroScene === 0 ? '1' : '0'"
+    style="transition: opacity 1.2s ease; object-position: center 15%;"
+    (loadedmetadata)="videoPuebla.playbackRate = 1.20"
     aria-hidden="true"
   >
-    <source
-      src="/videos/home-hero.mp4"
-      type="video/mp4"
-    >
+    <source src="/videos/home-hero.mp4" type="video/mp4" />
   </video>
+
+  <!-- VIDEO 2: PUEBLA MODERNA (ORIGINAL SIN MODIFICAR ENCUADRE) - 5 SEGUNDOS -->
+  <video
+    #videoModerno
+    class="hero-video hero-video--wide"
+    [muted]="true"
+    playsinline
+    preload="auto"
+    [style.opacity]="activeHeroScene === 1 ? '1' : '0'"
+    style="transition: opacity 1.2s ease;"
+    aria-hidden="true"
+  >
+    <source src="/videos/home-hero-puebla-2.mp4" type="video/mp4" />
+  </video>
+
+  <!-- VIDEO 3: PUEBLA - 5 SEGUNDOS -->
+
+<!-- VIDEO 3: PUEBLA - 10 SEGUNDOS -->
+<video
+  #videoTercero
+  class="hero-video"
+  [muted]="true"
+  playsinline
+  loop
+  preload="auto"
+  [style.opacity]="activeHeroScene === 2 ? '1' : '0'"
+  style="
+    transition: opacity 1.2s ease;
+    object-fit: cover;
+    object-position: center top;
+  "
+  aria-hidden="true"
+>
+  <source
+    src="/videos/home-hero-puebla-3.mp4"
+    type="video/mp4"
+  />
+</video>
+
 
   <div class="hero-overlay"></div>
 
@@ -655,4 +696,3 @@
   </div>
 
 </section>
-

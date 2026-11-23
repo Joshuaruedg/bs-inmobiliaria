@@ -72,6 +72,13 @@ export const routes: Routes = [
   },
 
   {
+    path: 'sobre-nosotros/bs-inmobiliaria',
+    loadComponent: () =>
+      import('./pages/about-bs/about-bs.component')
+        .then(m => m.AboutBsComponent)
+  },
+
+  {
     path: '**',
     redirectTo: ''
   }

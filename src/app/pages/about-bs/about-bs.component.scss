@@ -1,0 +1,407 @@
+
+/* =========================================================
+   BS INMOBILIARIA - NUESTRA HISTORIA
+========================================================= */
+
+:host {
+  display: block;
+  background: #ffffff;
+  color: var(--bs-ink);
+}
+
+.about-bs-container {
+  width: min(1180px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+/* =========================================================
+   PORTADA PANORÁMICA
+========================================================= */
+
+.about-bs-hero {
+  position: relative;
+  min-height: 680px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+
+  background-image:
+    url('/images/luxury/destino-lomas-clean.jpg');
+
+  background-size: cover;
+  background-position: center 53%;
+  background-repeat: no-repeat;
+  isolation: isolate;
+}
+
+.about-bs-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(2, 22, 42, .88) 0%,
+      rgba(3, 34, 60, .68) 43%,
+      rgba(3, 34, 60, .22) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(2, 22, 42, .35),
+      transparent 65%
+    );
+}
+
+.about-bs-hero-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 160px;
+  padding-bottom: 88px;
+  color: #ffffff;
+}
+
+/* =========================================================
+   BOTÓN VOLVER AL INICIO
+========================================================= */
+
+.about-bs-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 56px;
+
+  color: rgba(255, 255, 255, .90);
+  font-family: var(--font-body);
+  font-size: .70rem;
+  font-weight: 700;
+  letter-spacing: .11em;
+
+  text-decoration: none;
+  text-transform: uppercase;
+
+  transition:
+    gap .25s ease,
+    color .25s ease;
+}
+
+.about-bs-back:hover,
+.about-bs-back:focus-visible {
+  gap: 18px;
+  color: #ffffff;
+}
+
+/* =========================================================
+   TIPOGRAFÍA Y PORTADA
+========================================================= */
+
+.about-bs-eyebrow,
+.about-bs-kicker,
+.about-bs-section-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: .69rem;
+  font-weight: 700;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+
+.about-bs-eyebrow {
+  color: #90d8e0;
+}
+
+.about-bs-hero h1 {
+  max-width: 850px;
+  margin: 17px 0 0;
+
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: clamp(4.2rem, 7.4vw, 8.4rem);
+  font-weight: 400;
+  line-height: .92;
+  letter-spacing: -.038em;
+}
+
+.about-bs-hero p {
+  max-width: 640px;
+  margin: 30px 0 0;
+
+  color: rgba(255, 255, 255, .87);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+/* =========================================================
+   NUESTRA HISTORIA
+========================================================= */
+
+.about-bs-story {
+  padding: 108px 0 116px;
+  background: #ffffff;
+}
+
+.about-bs-story--muted {
+  background: #f5f7f8;
+}
+
+.about-bs-story-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(220px, .65fr)
+    minmax(0, 1.35fr);
+
+  gap: clamp(48px, 8vw, 138px);
+  align-items: start;
+}
+
+/* =========================================================
+   AÑOS 2004 Y 2010
+========================================================= */
+
+.about-bs-story-marker {
+  position: relative;
+  padding-top: 13px;
+  padding-left: 24px;
+
+  border-left: 2px solid var(--bs-cyan);
+}
+
+.about-bs-section-label {
+  margin-bottom: 20px;
+  color: var(--bs-cyan);
+  font-size: .62rem;
+}
+
+.about-bs-story-marker strong {
+  display: block;
+  color: var(--bs-navy);
+  font-family: var(--font-display);
+
+  font-size: clamp(4.4rem, 8vw, 7.4rem);
+  font-weight: 400;
+  letter-spacing: -.045em;
+  line-height: .9;
+}
+
+.about-bs-story-marker > span:last-child {
+  display: block;
+  margin-top: 20px;
+
+  color: var(--bs-muted);
+  font-size: .76rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+}
+
+/* =========================================================
+   TEXTOS DE LA HISTORIA
+========================================================= */
+
+.about-bs-kicker {
+  color: var(--bs-cyan);
+}
+
+.about-bs-story-copy h2 {
+  margin: 14px 0 28px;
+
+  color: var(--bs-navy);
+  font-family: var(--font-display);
+
+  font-size: clamp(3.2rem, 5vw, 5.6rem);
+  font-weight: 400;
+  letter-spacing: -.035em;
+  line-height: .99;
+}
+
+.about-bs-story-copy p {
+  max-width: 780px;
+  margin: 0 0 26px;
+
+  color: #445568;
+  font-family: var(--font-body);
+
+  font-size: clamp(.95rem, 1vw, 1.05rem);
+  line-height: 2.06;
+}
+
+.about-bs-story-copy p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   CIERRE DE LA PÁGINA
+========================================================= */
+
+.about-bs-ending {
+  padding: 52px 0;
+  color: #ffffff;
+  background: var(--bs-navy);
+}
+
+.about-bs-ending-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.about-bs-ending .about-bs-kicker {
+  color: #8ad4de;
+}
+
+.about-bs-ending p {
+  margin: 10px 0 0;
+
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw, 3.1rem);
+  font-weight: 400;
+}
+
+/* =========================================================
+   BOTÓN INFERIOR
+========================================================= */
+
+.about-bs-home-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 12px;
+  flex-shrink: 0;
+
+  padding: 18px 26px;
+
+  border: 1px solid rgba(255, 255, 255, .8);
+
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: .70rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+
+  text-decoration: none;
+  text-transform: uppercase;
+
+  transition:
+    background .25s ease,
+    color .25s ease;
+}
+
+.about-bs-home-button:hover,
+.about-bs-home-button:focus-visible {
+  background: #ffffff;
+  color: var(--bs-navy);
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+  .about-bs-hero {
+    min-height: 610px;
+    background-position: 58% center;
+  }
+
+  .about-bs-hero-content {
+    padding-top: 140px;
+    padding-bottom: 76px;
+  }
+
+  .about-bs-story {
+    padding: 82px 0;
+  }
+
+  .about-bs-story-grid {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .about-bs-story-marker strong {
+    font-size: 5.7rem;
+  }
+
+  .about-bs-story-copy h2 {
+    margin-top: 12px;
+  }
+}
+
+/* =========================================================
+   MÓVILES
+========================================================= */
+
+@media (max-width: 560px) {
+  .about-bs-container {
+    width: min(100% - 36px, 1180px);
+  }
+
+  .about-bs-hero {
+    min-height: 620px;
+    background-position: 62% center;
+  }
+
+  .about-bs-hero-content {
+    padding-top: 128px;
+    padding-bottom: 64px;
+  }
+
+  .about-bs-back {
+    margin-bottom: 50px;
+  }
+
+  .about-bs-hero h1 {
+    font-size: clamp(3.9rem, 13vw, 5.9rem);
+  }
+
+  .about-bs-hero p {
+    font-size: .91rem;
+    line-height: 1.8;
+  }
+
+  .about-bs-story {
+    padding: 68px 0 76px;
+  }
+
+  .about-bs-story-grid {
+    gap: 34px;
+  }
+
+  .about-bs-story-marker {
+    padding-left: 18px;
+  }
+
+  .about-bs-story-copy h2 {
+    font-size: clamp(3.1rem, 11vw, 4.5rem);
+  }
+
+  .about-bs-story-copy p {
+    font-size: .92rem;
+    line-height: 1.9;
+  }
+
+  .about-bs-ending-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .about-bs-home-button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   ACCESIBILIDAD
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .about-bs-back,
+  .about-bs-home-button {
+    transition: none;
+  }
+}
